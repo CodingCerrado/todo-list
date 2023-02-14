@@ -1,16 +1,16 @@
 {
   "files": {
-    "main.css": "/react-typescript/static/css/main.073c9b0a.css",
-    "main.js": "/react-typescript/static/js/main.19ab4120.js",
-    "static/js/787.1f013cd5.chunk.js": "/react-typescript/static/js/787.1f013cd5.chunk.js",
-    "static/media/logo-coding-cerrado.png": "/react-typescript/static/media/logo-coding-cerrado.7bc70eb382014618d813.png",
-    "index.html": "/react-typescript/index.html",
-    "main.073c9b0a.css.map": "/react-typescript/static/css/main.073c9b0a.css.map",
-    "main.19ab4120.js.map": "/react-typescript/static/js/main.19ab4120.js.map",
-    "787.1f013cd5.chunk.js.map": "/react-typescript/static/js/787.1f013cd5.chunk.js.map"
+    "main.css": "/todo-list/static/css/main.073c9b0a.css",
+    "main.js": "/todo-list/static/js/main.9fe154b8.js",
+    "static/js/787.a5cad257.chunk.js": "/todo-list/static/js/787.a5cad257.chunk.js",
+    "static/media/logo-coding-cerrado.png": "/todo-list/static/media/logo-coding-cerrado.7bc70eb382014618d813.png",
+    "index.html": "/todo-list/index.html",
+    "main.073c9b0a.css.map": "/todo-list/static/css/main.073c9b0a.css.map",
+    "main.9fe154b8.js.map": "/todo-list/static/js/main.9fe154b8.js.map",
+    "787.a5cad257.chunk.js.map": "/todo-list/static/js/787.a5cad257.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.073c9b0a.css",
-    "static/js/main.19ab4120.js"
+    "static/js/main.9fe154b8.js"
   ]
 }
