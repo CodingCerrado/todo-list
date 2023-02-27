@@ -1,24 +1,11 @@
 import React from 'react';
-import logo from './logo-coding-cerrado.png';
+import AddTodo from './components/AddTodo';
 import './App.scss';
 
 function App() {
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} alt="logo" />
-        <p>
-          Coding Cerrado
-        </p>
-        <a
-          className="App-link"
-          href="https://github.com/CodingCerrado"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Coding Cerrado  - Github Page
-        </a>
-      </header>
+      <AddTodo />
     </div>
   );
 }
