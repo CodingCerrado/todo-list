@@ -14,3 +14,7 @@ function Header() {
 }
 
 export default Header;
+
+// Mobile e Desktop
+// Cor de fundo do logo
+// Flexbox não cumprindo seu papel
