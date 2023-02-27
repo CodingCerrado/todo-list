@@ -1,0 +1,16 @@
+.Header {
+  display: flex;
+  background-color: #f0994c;
+  justify-content: center;
+  align-items: center;
+  height: 160px;
+  margin: auto 0;
+}
+.Header-title {
+  font-size: calc(12px + 2vmin);
+  color: white;
+  justify-self: center;
+}
+.Header-logo {
+  justify-self: flex-end;
+}
