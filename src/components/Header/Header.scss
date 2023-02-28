@@ -1,23 +1,26 @@
 $headerHeight: 160px;
+@mixin headerHeight {
+  height: $headerHeight;
+}
 .Header {
   display: flex;
   flex-direction: row;
   background-color: #fe9436;
   justify-content: center;
   align-items: center;
-  height: $headerHeight;
   margin: auto 0;
-}
-.Header-title {
-  font-size: calc(12px + 2vmin);
-  flex: 1;
-  color: white;
-  text-align: center;
-  margin-left: 80px;
-}
-.Header-logo {
-  img {
-    height: $headerHeight;
-    margin-top: 4px;
+  @include headerHeight();
+  .Header-title {
+    font-size: calc(12px + 2vmin);
+    flex: 1;
+    color: white;
+    text-align: center;
+    margin-left: 80px;
+  }
+  .Header-logo {
+    img {
+      @include headerHeight();
+      margin-top: 4px; //to fit the image to box size (discover why it has more 4px)
+    }
   }
 }
