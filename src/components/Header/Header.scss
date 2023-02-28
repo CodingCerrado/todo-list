@@ -1,25 +1,38 @@
-$headerHeight: 160px;
-@mixin headerHeight {
-  height: $headerHeight;
-}
-.Header {
+$headerHeightDesktop: 160px;
+$headerHeightMobile: 64px;
+.header {
   display: flex;
   flex-direction: row;
   background-color: #fe9436;
   justify-content: center;
   align-items: center;
   margin: auto 0;
-  @include headerHeight();
-  .Header-title {
-    font-size: calc(12px + 2vmin);
+  @media screen and (max-width: 480px) {
+    height: $headerHeightMobile;
+  }
+  @media screen and (min-width: 481px) {
+    height: $headerHeightDesktop;
+  }
+  .header-title {
+    font-size: calc(14px + 2vmin);
     flex: 1;
     color: white;
     text-align: center;
-    margin-left: 80px;
+    @media screen and (max-width: 480px) {
+      margin-left: $headerHeightMobile;
+    }
+    @media screen and (min-width: 481px) {
+      margin-left: $headerHeightDesktop;
+    }
   }
-  .Header-logo {
+  .header-logo {
     img {
-      @include headerHeight();
+      @media screen and (max-width: 480px) {
+        height: $headerHeightMobile;
+      }
+      @media screen and (min-width: 481px) {
+        height: $headerHeightDesktop;
+      }
       margin-top: 4px; //to fit the image to box size (discover why it has more 4px)
     }
   }

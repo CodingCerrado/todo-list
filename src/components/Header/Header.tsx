@@ -3,9 +3,9 @@ import "./Header.scss";
 
 function Header() {
   return (
-    <div className="Header">
-      <div className="Header-title">To-do list</div>
-      <div className="Header-logo">
+    <div className="header">
+      <div className="header-title">To-do list</div>
+      <div className="header-logo">
         <img
           src={process.env.PUBLIC_URL + "/logo-coding-cerrado.png"}
           alt="logo"
@@ -17,7 +17,4 @@ function Header() {
 
 export default Header;
 
-// Mobile e Desktop
-// Cor de fundo do logo***
-// Redimensionamento da img***
-// Flexbox não cumprindo seu papel***
+// When the screen has horizontal size value (width) lower than 368px, the header starts to be limited by "to-do items", because the items are not developed in a responsive way.
