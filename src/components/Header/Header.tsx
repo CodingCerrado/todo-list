@@ -1,5 +1,4 @@
 import React from "react";
-import logo from "../logo-coding-cerrado.png";
 import "./Header.scss";
 
 function Header() {
@@ -7,7 +6,10 @@ function Header() {
     <div className="Header">
       <div className="Header-title">To-do list</div>
       <div className="Header-logo">
-        <img src={logo} alt="logo" />
+        <img
+          src={process.env.PUBLIC_URL + "/logo-coding-cerrado.png"}
+          alt="logo"
+        />
       </div>
     </div>
   );
@@ -16,5 +18,6 @@ function Header() {
 export default Header;
 
 // Mobile e Desktop
-// Cor de fundo do logo
-// Flexbox não cumprindo seu papel
+// Cor de fundo do logo***
+// Redimensionamento da img***
+// Flexbox não cumprindo seu papel***

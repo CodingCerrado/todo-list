@@ -1,16 +1,23 @@
+$headerHeight: 160px;
 .Header {
   display: flex;
-  background-color: #f0994c;
+  flex-direction: row;
+  background-color: #fe9436;
   justify-content: center;
   align-items: center;
-  height: 160px;
+  height: $headerHeight;
   margin: auto 0;
 }
 .Header-title {
   font-size: calc(12px + 2vmin);
+  flex: 1;
   color: white;
-  justify-self: center;
+  text-align: center;
+  margin-left: 80px;
 }
 .Header-logo {
-  justify-self: flex-end;
+  img {
+    height: $headerHeight;
+    margin-top: 4px;
+  }
 }
