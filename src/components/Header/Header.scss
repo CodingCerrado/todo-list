@@ -25,15 +25,12 @@ $headerHeightMobile: 64px;
       margin-left: $headerHeightDesktop;
     }
   }
-  .header-logo {
-    img {
-      @media screen and (max-width: 480px) {
-        height: $headerHeightMobile;
-      }
-      @media screen and (min-width: 481px) {
-        height: $headerHeightDesktop;
-      }
-      margin-top: 4px; //to fit the image to box size (discover why it has more 4px)
+  img {
+    @media screen and (max-width: 480px) {
+      height: $headerHeightMobile;
+    }
+    @media screen and (min-width: 481px) {
+      height: $headerHeightDesktop;
     }
   }
 }

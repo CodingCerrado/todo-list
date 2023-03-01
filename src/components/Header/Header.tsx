@@ -5,12 +5,10 @@ function Header() {
   return (
     <div className="header">
       <div className="header-title">To-do list</div>
-      <div className="header-logo">
-        <img
-          src={process.env.PUBLIC_URL + "/logo-coding-cerrado.png"}
-          alt="logo"
-        />
-      </div>
+      <img
+        src={process.env.PUBLIC_URL + "/logo-coding-cerrado.png"}
+        alt="logo"
+      />
     </div>
   );
 }
