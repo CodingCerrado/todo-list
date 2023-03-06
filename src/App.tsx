@@ -9,9 +9,10 @@ function App() {
     // TODO
   };
 
-  function handleRemoveTodo() {
-    
+  const handleRemoveTodo = () => {
+    setItems(items.slice(0, -1))
   }
+  
 
   return (
     <div className="app">
@@ -24,6 +25,9 @@ function App() {
 
         <button type="button" onClick={handleClick}>
           Add todo item
+        </button>
+        <button type="button" onClick={handleRemoveTodo}>
+          Delete todo item
         </button>
       </div>
     </div>

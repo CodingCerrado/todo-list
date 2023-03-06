@@ -7,10 +7,6 @@ const Todo = ({ id }: { id: string }) => {
   const [state, setState] = useState(false);
   const [isHovered, setIsHovered] = useState(false);
 
-  const handleRemoveTodo = () => {
-    
-  }
-
   const getBackGroundColor = () => {
     if (isHovered) {
       return state ? "#fbe5d2" : "#f0f1f3";
@@ -30,6 +26,10 @@ const Todo = ({ id }: { id: string }) => {
   const handleChange = () => {
     setState(!state);
   };
+
+  const handleRemoveTodo = () => {
+    alert('oi')
+  }
 
   return (
     <div
