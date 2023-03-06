@@ -46,8 +46,8 @@ function CreateToDo() {
         onMouseEnter={handleMouseEnter}
         onMouseLeave={handleMouseLeave}
       >
-        <BiPlusCircle />
-        Create a new task
+        <BiPlusCircle className="plusbutton" />
+        <span className="namebutton">Create a new task</span>
       </button>
     </div>
   );

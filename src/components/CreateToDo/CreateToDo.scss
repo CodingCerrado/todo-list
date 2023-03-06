@@ -1,9 +1,20 @@
 .plustodo {
   border: 2px dashed gray;
-  border-radius: 10px;
-  font-size: large;
-  display: flex;
-  padding: 5px 15px 5px 15px;
+  width: fit-content;
   min-width: 350px;
-  gap: 10px;
+  border-radius: 8px;
+  font-size: medium;
+  padding: 4px 8px 4px 8px;
+  gap: 9px;
+  display: flex;
+
+  .plusbutton {
+    width: 22px;
+    height: 22px;
+    margin-left: 4px;
+  }
+
+  .namebutton {
+    margin-top: 1.5px;
+  }
 }
