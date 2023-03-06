@@ -9,6 +9,10 @@ function App() {
     // TODO
   };
 
+  function handleRemoveTodo() {
+    
+  }
+
   return (
     <div className="app">
       <div>Header</div>

@@ -7,6 +7,10 @@ const Todo = ({ id }: { id: string }) => {
   const [state, setState] = useState(false);
   const [isHovered, setIsHovered] = useState(false);
 
+  const handleRemoveTodo = () => {
+    
+  }
+
   const getBackGroundColor = () => {
     if (isHovered) {
       return state ? "#fbe5d2" : "#f0f1f3";
@@ -48,8 +52,8 @@ const Todo = ({ id }: { id: string }) => {
         <div className="content">
           <span>Checkbox Label</span>
 
-          {true && (
-            <button>
+          {isHovered && (
+            <button onClick={handleRemoveTodo}>
               <RiDeleteBin5Line />
             </button>
           )}
