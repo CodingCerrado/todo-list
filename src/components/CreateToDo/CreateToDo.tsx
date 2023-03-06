@@ -4,8 +4,18 @@ import "./CreateToDo.scss";
 import { BiPlusCircle } from "react-icons/bi";
 
 function CreateToDo() {
-  const [plus, setPlus] = useState(false);
+  const [plus, setPlus] = useState<(string | null)[]>(["Todo1", "Todo2"]);
   const [isHovered, setIsHovered] = useState(false);
+
+  let temNull = false;
+
+  if (plus.includes(null)) {
+    temNull = true;
+  }
+
+  const mudarLista = () => {
+    setPlus([...plus, "add novo to", null]);
+  };
 
   function getBackGroundColor() {
     if (isHovered) {
@@ -23,27 +33,22 @@ function CreateToDo() {
     setIsHovered(false);
   }
 
-  function handleChange() {
-    setPlus(!plus);
-  }
-
   return (
-    <div
-      className="title"
-      style={{
-        backgroundColor: getBackGroundColor(),
-      }}
-      onMouseEnter={handleMouseEnter}
-      onMouseLeave={handleMouseLeave}
-    >
-      <h1> ToDo List</h1>
-      <div>
-        <button className="plustodo">
-          {" "}
-          <BiPlusCircle />
-          Create a new task
-        </button>
-      </div>
+    <div>
+      {temNull && <div>Voce Adicionou um novo Todo</div>}
+      <button
+        className="plustodo"
+        onClick={mudarLista}
+        disabled={temNull}
+        style={{
+          backgroundColor: getBackGroundColor(),
+        }}
+        onMouseEnter={handleMouseEnter}
+        onMouseLeave={handleMouseLeave}
+      >
+        <BiPlusCircle />
+        Create a new task
+      </button>
     </div>
   );
 }

@@ -4,7 +4,7 @@ import Todo from "./components/Todo";
 import CreateToDo from "./components/CreateToDo/CreateToDo";
 
 function App() {
-  const [items, setItems] = useState(["Item 1", "Item 2", "Item 3"]);
+  const [items, setItems] = useState([]);
 
   return (
     <div>

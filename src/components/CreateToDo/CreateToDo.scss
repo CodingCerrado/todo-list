@@ -1,13 +1,9 @@
-.title {
-  font-size: large;
-}
-
 .plustodo {
   border: 2px dashed gray;
   border-radius: 10px;
   font-size: large;
   display: flex;
   padding: 5px 15px 5px 15px;
-  width: fit-content;
   min-width: 350px;
+  gap: 10px;
 }
