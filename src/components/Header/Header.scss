@@ -1,5 +1,18 @@
 $headerHeightDesktop: 160px;
 $headerHeightMobile: 64px;
+
+#header-height {
+  @media screen and (max-width: 480px) {
+    height: $headerHeightMobile;
+  }
+}
+
+#title-margin {
+  @media screen and (max-width: 480px) {
+    margin-left: $headerHeightMobile;
+  }
+}
+
 .header {
   display: flex;
   flex-direction: row;
@@ -7,30 +20,15 @@ $headerHeightMobile: 64px;
   justify-content: center;
   align-items: center;
   margin: auto 0;
-  @media screen and (max-width: 480px) {
-    height: $headerHeightMobile;
-  }
-  @media screen and (min-width: 481px) {
-    height: $headerHeightDesktop;
-  }
+  height: $headerHeightDesktop;
   .header-title {
     font-size: calc(14px + 2vmin);
     flex: 1;
     color: white;
     text-align: center;
-    @media screen and (max-width: 480px) {
-      margin-left: $headerHeightMobile;
-    }
-    @media screen and (min-width: 481px) {
-      margin-left: $headerHeightDesktop;
-    }
+    margin-left: $headerHeightDesktop;
   }
   img {
-    @media screen and (max-width: 480px) {
-      height: $headerHeightMobile;
-    }
-    @media screen and (min-width: 481px) {
-      height: $headerHeightDesktop;
-    }
+    height: $headerHeightDesktop;
   }
 }
