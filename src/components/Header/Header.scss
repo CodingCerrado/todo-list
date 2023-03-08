@@ -1,18 +1,6 @@
 $headerHeightDesktop: 160px;
 $headerHeightMobile: 64px;
 
-#header-height {
-  @media screen and (max-width: 480px) {
-    height: $headerHeightMobile;
-  }
-}
-
-#title-margin {
-  @media screen and (max-width: 480px) {
-    margin-left: $headerHeightMobile;
-  }
-}
-
 .header {
   display: flex;
   flex-direction: row;
@@ -30,5 +18,17 @@ $headerHeightMobile: 64px;
   }
   img {
     height: $headerHeightDesktop;
+  }
+}
+
+@media screen and (max-width: 480px) {
+  .header {
+    height: $headerHeightMobile;
+    .header-title {
+      margin-left: $headerHeightMobile;
+    }
+    img {
+      height: $headerHeightMobile;
+    }
   }
 }

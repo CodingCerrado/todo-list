@@ -3,10 +3,8 @@ import "./Header.scss";
 
 function Header() {
   return (
-    <div className="header" id="header-height">
-      <div className="header-title" id="title-margin">
-        To-do list
-      </div>
+    <div className="header">
+      <div className="header-title">To-do list</div>
       <img
         src={process.env.PUBLIC_URL + "/logo-coding-cerrado.png"}
         alt="logo"
