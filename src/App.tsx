@@ -3,12 +3,24 @@ import "./App.scss";
 import Todo from "./components/Todo";
 import CreateToDo from "./components/CreateToDo/CreateToDo";
 
-function App() {
-  const [items, setItems] = useState(["Item 1", "Item 2", "Item 3"]);
+interface AppState {
+  items: (string | null)[];
+}
 
-  const handleClick = () => {
-    // TODO
-  };
+function App() {
+  const [items, setItems] = useState<AppState["items"]>([
+    "Item 1",
+    "Item 2",
+    "Item 3",
+  ]);
+
+  function addToDoItem() {
+    setItems([...items, null]);
+
+    function handleClick() {
+      //TO DO
+    }
+  }
 
   return (
     <div className="app">
@@ -16,10 +28,10 @@ function App() {
       <div>Content</div>
 
       <div>
-        {items.map((item: string) => (
-          <Todo key={item} id={item} />
+        {items.map((item: string | null) => (
+          <Todo key={item ?? "null"} id={item ?? "null"} />
         ))}
-        <CreateToDo />
+        <CreateToDo onAdd={addToDoItem} />
       </div>
     </div>
   );
