@@ -5,11 +5,10 @@ import Todo from "./components/Todo";
 
 function App() {
   const [items, setItems] = useState(["Item 1", "Item 2", "Item 3"]);
-
+  localStorage.setItem("items", JSON.stringify(["Item 1", "Item 2", "Item 3"]));
   const handleClick = () => {
     // TODO
   };
-
   return (
     <div className="app">
       <Header />
