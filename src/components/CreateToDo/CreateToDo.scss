@@ -1,20 +1,17 @@
-.plustodo {
+.plus-todo {
   border: 2px dashed gray;
-  width: fit-content;
-  min-width: 350px;
+  width: 368px;
   border-radius: 8px;
   font-size: medium;
-  padding: 4px 8px 4px 8px;
+  padding: 4px 8px;
   gap: 9px;
   display: flex;
+  font-family: "Segoe UI", "Roboto", "Oxygen", "Ubuntu", "Cantarell",
+    "Fira Sans", "Droid Sans", "Helvetica Neue";
 
-  .plusbutton {
-    width: 22px;
-    height: 22px;
-    margin-left: 4px;
-  }
-
-  .namebutton {
-    margin-top: 1.5px;
+  .plus-button {
+    width: 23px;
+    height: 23px;
+    margin-left: 3px;
   }
 }

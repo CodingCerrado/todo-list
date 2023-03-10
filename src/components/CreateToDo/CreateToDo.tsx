@@ -6,7 +6,15 @@ import { BiPlusCircle } from "react-icons/bi";
 function CreateToDo({ onAdd }: { onAdd: () => void }) {
   const [isHovered, setIsHovered] = useState(false);
 
-  let temNull = false;
+  let hasNull = false;
+
+  const getBackGroundColor = () => {
+    if (isHovered) {
+      return isHovered ? "#fbe5d2" : "#f0f1f3";
+    } else {
+      return "white";
+    }
+  };
 
   function handleMouseEnter() {
     setIsHovered(true);
@@ -18,16 +26,19 @@ function CreateToDo({ onAdd }: { onAdd: () => void }) {
 
   return (
     <div>
-      {temNull && <div>You added a new todo!</div>}
+      {hasNull && <div>You added a new task</div>}
       <button
-        className="plustodo"
+        style={{
+          backgroundColor: getBackGroundColor(),
+        }}
+        className="plus-todo"
         onClick={onAdd}
-        disabled={temNull}
+        disabled={hasNull}
         onMouseEnter={handleMouseEnter}
         onMouseLeave={handleMouseLeave}
       >
-        <BiPlusCircle className="plusbutton" />
-        <span className="namebutton">Create a new task</span>
+        <BiPlusCircle className="plus-button" />
+        <span>Create a new task</span>
       </button>
     </div>
   );
