@@ -3,12 +3,8 @@ import "./App.scss";
 import Todo from "./components/Todo";
 import CreateToDo from "./components/CreateToDo/CreateToDo";
 
-interface AppState {
-  items: (string | null)[];
-}
-
 function App() {
-  const [items, setItems] = useState<AppState["items"]>([
+  const [items, setItems] = useState<(string | null)[]>([
     "Item 1",
     "Item 2",
     "Item 3",
