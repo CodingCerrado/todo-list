@@ -9,10 +9,10 @@ function App() {
     // TODO
   };
 
-  const handleRemoveTodo = () => {
-    setItems(items.slice(0, -1))
-  }
-  
+  const handleRemoveTodo = (id: string) => {
+    console.log(id)
+    setItems(items.filter((item) => item !== id));
+  };
 
   return (
     <div className="app">
@@ -20,14 +20,11 @@ function App() {
       <div>Content</div>
       <div>
         {items.map((item: string) => (
-          <Todo key={item} id={item} />
+          <Todo key={item} id={item} onDelete={() => handleRemoveTodo(item)} />
         ))}
 
         <button type="button" onClick={handleClick}>
           Add todo item
-        </button>
-        <button type="button" onClick={handleRemoveTodo}>
-          Delete todo item
         </button>
       </div>
     </div>
