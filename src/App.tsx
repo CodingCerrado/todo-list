@@ -1,14 +1,28 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import "./App.scss";
 // import Header from "./components/Header/Header";
 import Todo from "./components/Todo";
 
 function App() {
   const [items, setItems] = useState(["Item 1", "Item 2", "Item 3"]);
-  localStorage.setItem("items", JSON.stringify(["Item 1", "Item 2", "Item 3"]));
+
+  useEffect(() => {
+    const userData = localStorage.getItem("items");
+    // console.log("userData", userData);
+    if (userData !== null) {
+      setItems(JSON.parse(userData));
+    }
+  }, []);
+
+  useEffect(() => {
+    // console.log("items", items);
+    localStorage.setItem("items", JSON.stringify(items));
+  }, [items]);
+
   const handleClick = () => {
     // TODO
   };
+
   return (
     <div className="app">
       {/* <Header /> */}
