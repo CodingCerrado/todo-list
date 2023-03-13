@@ -3,7 +3,7 @@ import "./CreateToDo";
 import "./CreateToDo.scss";
 import { BiPlusCircle } from "react-icons/bi";
 
-function CreateToDo({ onAdd }: { onAdd: () => void }) {
+const CreateToDo = ({ onAdd }: { onAdd: () => void }) => {
   const [isHovered, setIsHovered] = useState(false);
 
   let hasNull = false;
@@ -16,13 +16,13 @@ function CreateToDo({ onAdd }: { onAdd: () => void }) {
     }
   };
 
-  function handleMouseEnter() {
+  const handleMouseEnter = () => {
     setIsHovered(true);
-  }
+  };
 
-  function handleMouseLeave() {
+  const handleMouseLeave = () => {
     setIsHovered(false);
-  }
+  };
 
   return (
     <div>
@@ -42,6 +42,6 @@ function CreateToDo({ onAdd }: { onAdd: () => void }) {
       </button>
     </div>
   );
-}
+};
 
 export default CreateToDo;

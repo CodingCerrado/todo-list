@@ -3,20 +3,20 @@ import "./App.scss";
 import Todo from "./components/Todo";
 import CreateToDo from "./components/CreateToDo";
 
-function App() {
+const App = () => {
   const [items, setItems] = useState<(string | null)[]>([
     "Item 1",
     "Item 2",
     "Item 3",
   ]);
 
-  function addToDoItem() {
+  const addToDoItem = () => {
     setItems([...items, null]);
 
-    function handleClick() {
+    const handleClick = () => {
       //TO DO
-    }
-  }
+    };
+  };
 
   return (
     <div className="app">
@@ -31,6 +31,6 @@ function App() {
       </div>
     </div>
   );
-}
+};
 
 export default App;
