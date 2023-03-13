@@ -1,5 +1,6 @@
 import { useState } from "react";
 import "./App.scss";
+import Header from "./components/Header";
 import Todo from "./components/Todo";
 
 function App() {
@@ -11,7 +12,7 @@ function App() {
 
   return (
     <div className="app">
-      <div>Header</div>
+      <Header />
       <div>Content</div>
       <div>
         {items.map((item: string) => (
