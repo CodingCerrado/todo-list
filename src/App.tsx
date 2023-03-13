@@ -11,13 +11,17 @@ function App() {
     // console.log("userData", userData);
     if (userData !== null) {
       setItems(JSON.parse(userData));
-    }
+    } // it's not setting the item
   }, []);
+
+  // [] hook just when building the component
 
   useEffect(() => {
     // console.log("items", items);
     localStorage.setItem("items", JSON.stringify(items));
   }, [items]);
+
+  // [items] it will be hooked everytime the "items" are updated
 
   const handleClick = () => {
     // TODO
