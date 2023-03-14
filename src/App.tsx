@@ -9,6 +9,7 @@ const App = () => {
     "Item 2",
     "Item 3",
   ]);
+  // preciso verificar se o items tem algum valor null nele
 
   const addToDoItem = () => {
     setItems([...items, null]);
@@ -24,8 +25,8 @@ const App = () => {
       <div>Content</div>
 
       <div>
-        {items.map((item: string | null) => (
-          <Todo key={item ?? "null"} id={item ?? "null"} />
+        {items.map((item: string | null, index) => (
+          <Todo key={item} id={index.toString()} />
         ))}
         <CreateToDo onAdd={addToDoItem} />
       </div>
