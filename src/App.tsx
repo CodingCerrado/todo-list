@@ -1,25 +1,30 @@
 import { useState, useEffect } from "react";
 import "./App.scss";
 // import Header from "./components/Header/Header";
-import Todo from "./components/Todo";
+import Todo from "./components/Todo/Todo";
 
 function App() {
   const [items, setItems] = useState(["Item 1", "Item 2", "Item 3"]);
+  //["Item 1"...] //id, isChecked
+  //isChecked
+  //tirar useEffects do todo
+  //userData fora da função
+  //apenas primeiro useEffect
+
+  useEffect(() => {
+    // console.log("items", items);
+    localStorage.setItem("items", JSON.stringify(items));
+  }, [items]);
 
   useEffect(() => {
     const userData = localStorage.getItem("items");
-    // console.log("userData", userData);
+    //console.log("userData", userData);
     if (userData !== null) {
       setItems(JSON.parse(userData));
     } // it's not setting the item
   }, []);
 
   // [] hook just when building the component
-
-  useEffect(() => {
-    // console.log("items", items);
-    localStorage.setItem("items", JSON.stringify(items));
-  }, [items]);
 
   // [items] it will be hooked everytime the "items" are updated
 

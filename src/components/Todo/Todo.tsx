@@ -1,6 +1,5 @@
 import { useState, useEffect } from "react";
 import "./Todo.scss";
-
 import { RiDeleteBin5Line } from "react-icons/ri";
 
 const Todo = ({ id }: { id: string }) => {
@@ -8,17 +7,17 @@ const Todo = ({ id }: { id: string }) => {
   const [isHovered, setIsHovered] = useState(false);
 
   useEffect(() => {
+    // console.log("state", state);
+    localStorage.setItem("state", JSON.stringify(state));
+  }, [state]);
+
+  useEffect(() => {
     const userState = localStorage.getItem("state");
-    //console.log("userState", userState);
+    console.log("userState", userState);
     if (userState !== null) {
       setState(JSON.parse(userState));
     } // it's not setting the state
   }, []);
-
-  useEffect(() => {
-    // console.log("state", state);
-    localStorage.setItem("state", JSON.stringify(state));
-  }, [state]);
 
   const getBackGroundColor = () => {
     if (isHovered) {
