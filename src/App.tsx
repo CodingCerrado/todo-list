@@ -16,13 +16,11 @@ function App() {
     localStorage.setItem("items", JSON.stringify(items));
   }, [items]);
 
-  useEffect(() => {
-    const userData = localStorage.getItem("items");
-    //console.log("userData", userData);
-    if (userData !== null) {
-      setItems(JSON.parse(userData));
-    } // it's not setting the item
-  }, []);
+  // const userData = localStorage.getItem("items");
+  //console.log("userData", userData);
+  // if (userData !== null) {
+  //   setItems(JSON.parse(userData));
+  // } // it's not setting the item
 
   // [] hook just when building the component
 

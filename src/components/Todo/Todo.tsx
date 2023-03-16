@@ -11,13 +11,11 @@ const Todo = ({ id }: { id: string }) => {
     localStorage.setItem("state", JSON.stringify(state));
   }, [state]);
 
-  useEffect(() => {
-    const userState = localStorage.getItem("state");
-    console.log("userState", userState);
-    if (userState !== null) {
-      setState(JSON.parse(userState));
-    } // it's not setting the state
-  }, []);
+  // const userState = localStorage.getItem("state");
+  //console.log("userState", userState);
+  // if (userState !== null) {
+  //   setState(JSON.parse(userState));
+  // } // it's not setting the state
 
   const getBackGroundColor = () => {
     if (isHovered) {
