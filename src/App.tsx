@@ -10,7 +10,6 @@ function App() {
   };
 
   const handleRemoveTodo = (id: string) => {
-    console.log(id)
     setItems(items.filter((item) => item !== id));
   };
 
