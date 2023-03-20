@@ -2,20 +2,9 @@ import { useState, useEffect } from "react";
 import "./Todo.scss";
 import { RiDeleteBin5Line } from "react-icons/ri";
 
-const Todo = ({ id }: { id: string }) => {
-  const [state, setState] = useState(false);
+const Todo = ({ id, isChecked }: { id: string; isChecked: boolean }) => {
+  const [state, setState] = useState(isChecked);
   const [isHovered, setIsHovered] = useState(false);
-
-  useEffect(() => {
-    // console.log("state", state);
-    localStorage.setItem("state", JSON.stringify(state));
-  }, [state]);
-
-  // const userState = localStorage.getItem("state");
-  //console.log("userState", userState);
-  // if (userState !== null) {
-  //   setState(JSON.parse(userState));
-  // } // it's not setting the state
 
   const getBackGroundColor = () => {
     if (isHovered) {

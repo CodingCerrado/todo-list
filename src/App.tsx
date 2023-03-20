@@ -4,27 +4,15 @@ import "./App.scss";
 import Todo from "./components/Todo/Todo";
 
 function App() {
-  const [items, setItems] = useState(["Item 1", "Item 2", "Item 3"]);
-  //["Item 1"...] //id, isChecked
-  //isChecked
-  //tirar useEffects do todo
-  //userData fora da função
-  //apenas primeiro useEffect
+  const [items, setItems] = useState([
+    { item: "Item 1", id: "1", isChecked: false },
+    { item: "Item 2", id: "2", isChecked: false },
+    { item: "Item 3", id: "3", isChecked: false },
+  ]);
 
   useEffect(() => {
-    // console.log("items", items);
     localStorage.setItem("items", JSON.stringify(items));
   }, [items]);
-
-  // const userData = localStorage.getItem("items");
-  //console.log("userData", userData);
-  // if (userData !== null) {
-  //   setItems(JSON.parse(userData));
-  // } // it's not setting the item
-
-  // [] hook just when building the component
-
-  // [items] it will be hooked everytime the "items" are updated
 
   const handleClick = () => {
     // TODO
@@ -35,8 +23,8 @@ function App() {
       {/* <Header /> */}
       <div>Content</div>
       <div>
-        {items.map((item: string) => (
-          <Todo key={item} id={item} />
+        {items.map((item) => (
+          <Todo key={item.id} id={item.id} isChecked={item.isChecked} />
         ))}
 
         <button type="button" onClick={handleClick}>
