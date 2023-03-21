@@ -2,10 +2,9 @@ import { useState, useEffect } from "react";
 import "./Todo.scss";
 import { RiDeleteBin5Line } from "react-icons/ri";
 
-const Todo = ({ id, isChecked }: { id: string; isChecked: boolean }) => {
-  const [state, setState] = useState(isChecked);
+const Todo = ({ id, onDelete }: { id: string; onDelete: () => void; }) => {
+  const [state, setState] = useState(false);
   const [isHovered, setIsHovered] = useState(false);
-
   const getBackGroundColor = () => {
     if (isHovered) {
       return state ? "#fbe5d2" : "#f0f1f3";
@@ -47,8 +46,8 @@ const Todo = ({ id, isChecked }: { id: string; isChecked: boolean }) => {
         <div className="content">
           <span>Checkbox Label</span>
 
-          {true && (
-            <button>
+          {isHovered && (
+            <button onClick={onDelete}>
               <RiDeleteBin5Line />
             </button>
           )}

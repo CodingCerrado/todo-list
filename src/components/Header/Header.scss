@@ -1,0 +1,34 @@
+$headerHeightDesktop: 160px;
+$headerHeightMobile: 64px;
+
+.header {
+  display: flex;
+  flex-direction: row;
+  background-color: #fe9436;
+  justify-content: center;
+  align-items: center;
+  margin: auto 0;
+  height: $headerHeightDesktop;
+  .header-title {
+    font-size: calc(14px + 2vmin);
+    flex: 1;
+    color: white;
+    text-align: center;
+    margin-left: $headerHeightDesktop;
+  }
+  img {
+    height: $headerHeightDesktop;
+  }
+}
+
+@media screen and (max-width: 480px) {
+  .header {
+    height: $headerHeightMobile;
+    .header-title {
+      margin-left: $headerHeightMobile;
+    }
+    img {
+      height: $headerHeightMobile;
+    }
+  }
+}

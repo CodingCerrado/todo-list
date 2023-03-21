@@ -1,30 +1,36 @@
 import { useState, useEffect } from "react";
 import "./App.scss";
-// import Header from "./components/Header/Header";
-import Todo from "./components/Todo/Todo";
+import Header from "./components/Header";
+import Todo from "./components/Todo";
 
 function App() {
-  const [items, setItems] = useState([
-    { item: "Item 1", id: "1", isChecked: false },
-    { item: "Item 2", id: "2", isChecked: false },
-    { item: "Item 3", id: "3", isChecked: false },
-  ]);
+  const [items, setItems] = useState(["First Item"]);
 
   useEffect(() => {
-    localStorage.setItem("items", JSON.stringify(items));
-  }, [items]);
+    const meuLocalStorage = localStorage.getItem("items");
+    if (meuLocalStorage !== null) {
+      setItems(JSON.parse(meuLocalStorage));
+    }
+  }, []);
 
   const handleClick = () => {
     // TODO
+    setItems([...items, 'Novo Item']);
+    localStorage.setItem("items", JSON.stringify([...items, 'Novo Item']));
+  };
+
+  const handleRemoveTodo = (id: string) => {
+    setItems(items.filter((item) => item !== id));
+    // TODO: delete from local storage as well
   };
 
   return (
     <div className="app">
-      {/* <Header /> */}
+      <Header />
       <div>Content</div>
       <div>
-        {items.map((item) => (
-          <Todo key={item.id} id={item.id} isChecked={item.isChecked} />
+        {items.map((item: string) => (
+          <Todo key={item} id={item} onDelete={() => handleRemoveTodo(item)} />
         ))}
 
         <button type="button" onClick={handleClick}>
