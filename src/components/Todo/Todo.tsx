@@ -1,9 +1,8 @@
 import { useState } from "react";
 import "./Todo.scss";
-
 import { RiDeleteBin5Line } from "react-icons/ri";
 
-const Todo = ({ id }: { id: string }) => {
+const Todo = ({ id, onDelete }: { id: string; onDelete: () => void }) => {
   const [state, setState] = useState(false);
   const [isHovered, setIsHovered] = useState(false);
 
@@ -48,8 +47,8 @@ const Todo = ({ id }: { id: string }) => {
         <div className="content">
           <span>Checkbox Label</span>
 
-          {true && (
-            <button>
+          {isHovered && (
+            <button onClick={onDelete}>
               <RiDeleteBin5Line />
             </button>
           )}

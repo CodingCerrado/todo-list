@@ -10,13 +10,17 @@ function App() {
     // TODO
   };
 
+  const handleRemoveTodo = (id: string) => {
+    setItems(items.filter((item) => item !== id));
+  };
+
   return (
     <div className="app">
       <Header />
       <div>Content</div>
       <div>
         {items.map((item: string) => (
-          <Todo key={item} id={item} />
+          <Todo key={item} id={item} onDelete={() => handleRemoveTodo(item)} />
         ))}
 
         <button type="button" onClick={handleClick}>
