@@ -13,8 +13,8 @@ function App() {
 
   useEffect(() => {
     localStorage.setItem("items", JSON.stringify(items));
-    const userStorage = localStorage.getItem("items");
-    console.log(userStorage);
+    //const userStorage = localStorage.getItem("items");
+    //console.log(userStorage);
   }, [items]);
 
   const handleClick = () => {
