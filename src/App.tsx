@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+import { json } from "stream/consumers";
 import "./App.scss";
 // import Header from "./components/Header/Header";
 import Todo from "./components/Todo/Todo";
@@ -12,6 +13,8 @@ function App() {
 
   useEffect(() => {
     localStorage.setItem("items", JSON.stringify(items));
+    const userStorage = localStorage.getItem("items");
+    console.log(userStorage);
   }, [items]);
 
   const handleClick = () => {
