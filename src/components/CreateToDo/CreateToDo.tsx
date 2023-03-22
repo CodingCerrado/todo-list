@@ -39,11 +39,11 @@ const CreateToDo = ({
 
   return (
     <div>
-      {hasNull ? (
+      {/* {hasNull ? (
         <div>You added a new task</div>
       ) : (
         <button disabled={true}>Disabled Button</button>
-      )}
+      )} */}
       <button
         style={{
           backgroundColor: getBackGroundColor(),

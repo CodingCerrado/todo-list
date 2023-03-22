@@ -11,25 +11,24 @@ const App = () => {
   ]);
 
   const [hasNull, setHasNull] = useState(false);
-  const [disableButton, setDisableButton] = useState(false);
+  // const [disableButton, setDisableButton] = useState(false);
 
-  if (items[items.length - 1] === null) {
-    setHasNull(true);
-    setDisableButton(true);
-  }
-  const disableAddToDoItem = () => {
-    setDisableButton(true);
+  const disableAddTask = () => {
+    if (items[items.length - 1] === null) {
+      setHasNull(true);
+      // setDisableButton(true);
+    }
   };
 
   const addToDoItem = () => {
     if (hasNull) {
       setItems([...items, null]);
     } else {
-      disableAddToDoItem();
+      disableAddTask();
     }
-    const handleClick = () => {
-      //TO DO
-    };
+    // const handleClick = () => {
+    //   //TO DO
+    // };
   };
 
   return (
@@ -43,7 +42,7 @@ const App = () => {
         ))}
         <CreateToDo
           onAdd={addToDoItem}
-          disableButton={disableAddToDoItem}
+          disableButton={disableAddTask}
           hasNull
         />
       </div>
