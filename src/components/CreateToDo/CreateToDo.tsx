@@ -6,9 +6,11 @@ import { BiPlusCircle } from "react-icons/bi";
 const CreateToDo = ({
   onAdd,
   disableButton,
+  hasNull,
 }: {
   onAdd: () => void;
-  disableButton: boolean;
+  disableButton: () => void;
+  hasNull: boolean;
 }) => {
   const [isHovered, setIsHovered] = useState(false);
 
@@ -27,17 +29,28 @@ const CreateToDo = ({
   const handleMouseLeave = () => {
     setIsHovered(false);
   };
+  const handleClick = () => {
+    if (hasNull) {
+      onAdd();
+    } else {
+      disableButton();
+    }
+  };
 
   return (
     <div>
-      if (hasNull){<div>You added a new task</div>}else{disableButton}
+      {hasNull ? (
+        <div>You added a new task</div>
+      ) : (
+        <button disabled={true}>Disabled Button</button>
+      )}
       <button
         style={{
           backgroundColor: getBackGroundColor(),
         }}
         className="plus-todo"
-        onClick={onAdd}
-        disabled={disableButton}
+        onClick={handleClick}
+        disabled={hasNull}
         onMouseEnter={handleMouseEnter}
         onMouseLeave={handleMouseLeave}
       >

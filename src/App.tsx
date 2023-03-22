@@ -25,7 +25,7 @@ const App = () => {
     if (hasNull) {
       setItems([...items, null]);
     } else {
-      disableAddToDoItem;
+      disableAddToDoItem();
     }
     const handleClick = () => {
       //TO DO
@@ -41,7 +41,11 @@ const App = () => {
         {items.map((item: string | null, index) => (
           <Todo key={item} id={index.toString()} />
         ))}
-        <CreateToDo onAdd={addToDoItem} disableButton={disableAddToDoItem} />
+        <CreateToDo
+          onAdd={addToDoItem}
+          disableButton={disableAddToDoItem}
+          hasNull
+        />
       </div>
     </div>
   );
