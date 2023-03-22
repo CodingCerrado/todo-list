@@ -3,10 +3,14 @@ import "./CreateToDo";
 import "./CreateToDo.scss";
 import { BiPlusCircle } from "react-icons/bi";
 
-const CreateToDo = ({ onAdd }: { onAdd: () => void }) => {
+const CreateToDo = ({
+  onAdd,
+  disableButton,
+}: {
+  onAdd: () => void;
+  disableButton: boolean;
+}) => {
   const [isHovered, setIsHovered] = useState(false);
-
-  let hasNull = false;
 
   const getBackGroundColor = () => {
     if (isHovered) {
@@ -26,14 +30,14 @@ const CreateToDo = ({ onAdd }: { onAdd: () => void }) => {
 
   return (
     <div>
-      {hasNull && <div>You added a new task</div>}
+      if (hasNull){<div>You added a new task</div>}else{disableButton}
       <button
         style={{
           backgroundColor: getBackGroundColor(),
         }}
         className="plus-todo"
         onClick={onAdd}
-        disabled={hasNull}
+        disabled={disableButton}
         onMouseEnter={handleMouseEnter}
         onMouseLeave={handleMouseLeave}
       >

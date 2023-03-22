@@ -1,6 +1,6 @@
 import { useState } from "react";
 import "./App.scss";
-import Todo from "./components/Todo";
+import Todo from "./components/Todo/Todo";
 import CreateToDo from "./components/CreateToDo";
 
 const App = () => {
@@ -9,11 +9,24 @@ const App = () => {
     "Item 2",
     "Item 3",
   ]);
-  // preciso verificar se o items tem algum valor null nele
+
+  const [hasNull, setHasNull] = useState(false);
+  const [disableButton, setDisableButton] = useState(false);
+
+  if (items[items.length - 1] === null) {
+    setHasNull(true);
+    setDisableButton(true);
+  }
+  const disableAddToDoItem = () => {
+    setDisableButton(true);
+  };
 
   const addToDoItem = () => {
-    setItems([...items, null]);
-
+    if (hasNull) {
+      setItems([...items, null]);
+    } else {
+      disableAddToDoItem;
+    }
     const handleClick = () => {
       //TO DO
     };
@@ -28,7 +41,7 @@ const App = () => {
         {items.map((item: string | null, index) => (
           <Todo key={item} id={index.toString()} />
         ))}
-        <CreateToDo onAdd={addToDoItem} />
+        <CreateToDo onAdd={addToDoItem} disableButton={disableAddToDoItem} />
       </div>
     </div>
   );
