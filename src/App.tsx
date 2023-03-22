@@ -19,6 +19,7 @@ const App = () => {
   const disableAddTask = () => {
     if (items[items.length - 1] === null) {
       setHasNull(true);
+      return true
     }
   };
 
