@@ -31,11 +31,7 @@ const App = () => {
         {items.map((item: string | null, index) => (
           <Todo key={item} id={index.toString()} />
         ))}
-        <CreateToDo
-          onAdd={addToDoItem}
-          stopAdd={disableAddTask}
-          hasNull={hasNull}
-        />
+        <CreateToDo onAdd={addToDoItem} stopAdd={disableAddTask} />
       </div>
     </div>
   );
