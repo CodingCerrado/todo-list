@@ -8,7 +8,7 @@ const CreateToDo = ({
   stopAdd,
 }: {
   onAdd: () => void;
-  stopAdd: () => any;
+  stopAdd: () => boolean;
 }) => {
   const [isHovered, setIsHovered] = useState(false);
 

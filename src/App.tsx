@@ -10,17 +10,15 @@ const App = () => {
     "Item 3",
   ]);
 
-  const [hasNull, setHasNull] = useState(false);
-
   const addToDoItem = () => {
     setItems([...items, null]);
   };
 
   const disableAddTask = () => {
     if (items[items.length - 1] === null) {
-      setHasNull(true);
-      return true
+      return true;
     }
+    return false;
   };
 
   return (
