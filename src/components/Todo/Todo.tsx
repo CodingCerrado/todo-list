@@ -5,6 +5,7 @@ import { RiDeleteBin5Line } from "react-icons/ri";
 const Todo = ({ id, onDelete }: { id: string; onDelete: () => void }) => {
   const [state, setState] = useState(false);
   const [isHovered, setIsHovered] = useState(false);
+  const [text, setText] = useState(id);
 
   const getBackGroundColor = () => {
     if (isHovered) {
@@ -26,6 +27,17 @@ const Todo = ({ id, onDelete }: { id: string; onDelete: () => void }) => {
     setState(!state);
   };
 
+  const handleTextChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    setText(event.target.value);
+  };
+
+  const handleKeyDown = (event: React.KeyboardEvent<HTMLInputElement>) => {
+    if (event.key === "Enter") {
+      // Update the item with the new text
+      setText(event.currentTarget.value);
+    }
+  };
+
   return (
     <div
       className="todo"
@@ -45,7 +57,16 @@ const Todo = ({ id, onDelete }: { id: string; onDelete: () => void }) => {
           onChange={handleChange}
         />
         <div className="content">
-          <span>Checkbox Label</span>
+          <input
+            className="content-input"
+            style={{
+              backgroundColor: getBackGroundColor(),
+            }}
+            type="text"
+            value={text}
+            onChange={handleTextChange}
+            onKeyDown={handleKeyDown}
+          />
 
           {isHovered && (
             <button onClick={onDelete}>
