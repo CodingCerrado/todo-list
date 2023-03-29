@@ -2,7 +2,17 @@ import { useState } from "react";
 import "./Todo.scss";
 import { RiDeleteBin5Line } from "react-icons/ri";
 
-const Todo = ({ id, onDelete, itemText }: { id: string; onDelete: () => void; itemText: string; }) => {
+const Todo = ({
+  id,
+  onDelete,
+  itemText,
+  onUpdate,
+}: {
+  id: string;
+  onDelete: () => void;
+  itemText: string;
+  onUpdate: (newText: string) => void;
+}) => {
   const [state, setState] = useState(false);
   const [isHovered, setIsHovered] = useState(false);
   const [text, setText] = useState(itemText);
@@ -34,7 +44,7 @@ const Todo = ({ id, onDelete, itemText }: { id: string; onDelete: () => void; it
   const handleKeyDown = (event: React.KeyboardEvent<HTMLInputElement>) => {
     if (event.key === "Enter") {
       // Update the item with the new text
-      setText(event.currentTarget.value);
+      onUpdate(event.currentTarget.value);
     }
   };
 

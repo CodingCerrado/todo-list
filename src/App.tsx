@@ -1,11 +1,11 @@
 import { useState } from "react";
 import "./App.scss";
 import Header from "./components/Header";
-import Todo from "./components/Todo";
+import Todo from "./components/Todo/Todo";
 
 function App() {
   const [items, setItems] = useState(["Item 1", "Item 2", "Item 3"]);
-    // console.log("Meus items:", items)
+  // console.log("Meus items:", items)
 
   const handleClick = () => {
     // TODO
@@ -15,13 +15,31 @@ function App() {
     setItems(items.filter((item) => item !== id));
   };
 
+  const handleUpdateTodo = (id: string, newText: string) => {
+    const updatedItems = items.map((item) => {
+      if (item === id) {
+        return newText;
+      } else {
+        return item;
+      }
+    });
+    setItems(updatedItems);
+    console.log(items);
+  };
+
   return (
     <div className="app">
       <Header />
       <div>Content</div>
       <div>
         {items.map((item: string) => (
-          <Todo key={item} id={item} onDelete={() => handleRemoveTodo(item)} itemText={item}/>
+          <Todo
+            key={item}
+            id={item}
+            onDelete={() => handleRemoveTodo(item)}
+            onUpdate={(newText: string) => handleUpdateTodo(item, newText)}
+            itemText={item}
+          />
         ))}
 
         <button type="button" onClick={handleClick}>
