@@ -2,10 +2,10 @@ import { useState } from "react";
 import "./Todo.scss";
 import { RiDeleteBin5Line } from "react-icons/ri";
 
-const Todo = ({ id, onDelete }: { id: string; onDelete: () => void }) => {
+const Todo = ({ id, onDelete, itemText }: { id: string; onDelete: () => void; itemText: string; }) => {
   const [state, setState] = useState(false);
   const [isHovered, setIsHovered] = useState(false);
-  const [text, setText] = useState(id);
+  const [text, setText] = useState(itemText);
 
   const getBackGroundColor = () => {
     if (isHovered) {

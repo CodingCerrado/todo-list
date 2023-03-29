@@ -5,6 +5,7 @@ import Todo from "./components/Todo";
 
 function App() {
   const [items, setItems] = useState(["Item 1", "Item 2", "Item 3"]);
+    // console.log("Meus items:", items)
 
   const handleClick = () => {
     // TODO
@@ -20,7 +21,7 @@ function App() {
       <div>Content</div>
       <div>
         {items.map((item: string) => (
-          <Todo key={item} id={item} onDelete={() => handleRemoveTodo(item)} />
+          <Todo key={item} id={item} onDelete={() => handleRemoveTodo(item)} itemText={item}/>
         ))}
 
         <button type="button" onClick={handleClick}>
