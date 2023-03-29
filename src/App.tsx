@@ -12,15 +12,12 @@ const App = () => {
 
   const [hasNull, setHasNull] = useState(false);
 
-  const addToDoItem = () => {
+  const handleCreateToDo = () => {
     setItems([...items, null]);
-    // setHasNull(true);
   };
 
   useEffect(() => {
-    // const disableAddTask = () => {
     setHasNull(items.includes(null));
-    // disableAddTask();
   }, [items]);
 
   return (
@@ -32,11 +29,7 @@ const App = () => {
         {items.map((item: string | null, index) => (
           <Todo key={item} id={index.toString()} />
         ))}
-        <CreateToDo
-          onAdd={addToDoItem}
-          hasNull={hasNull}
-          /*stopAdd={disableAddTask}*/
-        />
+        <CreateToDo onAdd={handleCreateToDo} hasNull={hasNull} />
       </div>
     </div>
   );
