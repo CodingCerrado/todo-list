@@ -5,7 +5,7 @@ import Header from "./components/Header";
 import Todo from "./components/Todo/Todo";
 
 function App() {
-  const [items, setItems] = useState(["First Item"]);
+  const [items, setItems] = useState(["Item 1", "Item 2", "Item 3"]);
 
   useEffect(() => {
     const meuLocalStorage = localStorage.getItem("items");
