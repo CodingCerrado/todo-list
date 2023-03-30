@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 import { json } from "stream/consumers";
 import "./App.scss";
 import Header from "./components/Header";
-import Todo from "./components/Todo";
+import Todo from "./components/Todo/Todo";
 
 function App() {
   const [items, setItems] = useState(["First Item"]);
@@ -16,12 +16,14 @@ function App() {
 
   const handleClick = () => {
     // TODO
-    setItems([...items, 'Novo Item']);
-    localStorage.setItem("items", JSON.stringify([...items, 'Novo Item']));
+    setItems([...items, "Novo Item"]);
+    localStorage.setItem("items", JSON.stringify([...items, "Novo Item"]));
   };
 
   const handleRemoveTodo = (id: string) => {
     setItems(items.filter((item) => item !== id));
+    const notRemovedItems = items.filter((item) => item !== id);
+    localStorage.setItem("items", JSON.stringify(notRemovedItems));
     // TODO: delete from local storage as well
   };
 
