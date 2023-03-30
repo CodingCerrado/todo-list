@@ -16,8 +16,9 @@ function App() {
 
   const handleClick = () => {
     // TODO
-    setItems([...items, "Novo Item"]);
-    localStorage.setItem("items", JSON.stringify([...items, "Novo Item"]));
+    const newItem = `Novo Item ${Math.random()}`;
+    setItems([...items, newItem]);
+    localStorage.setItem("items", JSON.stringify([...items, newItem]));
   };
 
   const handleRemoveTodo = (id: string) => {
