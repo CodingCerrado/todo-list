@@ -1,7 +1,8 @@
 import { useEffect, useState } from "react";
 import "./App.scss";
-import Todo from "./components/Todo/Todo";
 import CreateToDo from "./components/CreateToDo";
+import Header from "./components/Header";
+import Todo from "./components/Todo";
 
 const App = () => {
   const [items, setItems] = useState<(string | null)[]>([
@@ -20,16 +21,27 @@ const App = () => {
     setHasNull(items.includes(null));
   }, [items]);
 
+  const handleRemoveTodo = (id: string | null) => {
+    setItems(items.filter((item) => item !== id && item !== null));
+  };
+
   return (
     <div className="app">
-      <div>Header</div>
+      <Header />
       <div>Content</div>
-
       <div>
         {items.map((item: string | null, index) => (
-          <Todo key={item} newItem={index.toString()} />
+          <Todo
+            key={item}
+            id={item}
+            newItem={index.toString()}
+            onDelete={() => handleRemoveTodo(item)}
+          />
         ))}
-        <CreateToDo onAdd={handleCreateToDo} hasNull={hasNull} />
+
+        <div>
+          <CreateToDo onAdd={handleCreateToDo} hasNull={hasNull} />
+        </div>
       </div>
     </div>
   );
