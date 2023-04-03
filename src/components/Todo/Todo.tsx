@@ -3,7 +3,7 @@ import "./Todo.scss";
 
 import { RiDeleteBin5Line } from "react-icons/ri";
 
-const Todo = ({ id }: { id: string }) => {
+const Todo = ({ newItem }: { newItem: string }) => {
   const [state, setState] = useState(false);
   const [isHovered, setIsHovered] = useState(false);
 
@@ -36,12 +36,12 @@ const Todo = ({ id }: { id: string }) => {
       onMouseEnter={handleMouseEnter}
       onMouseLeave={handleMouseLeave}
     >
-      <label htmlFor={id}>
+      <label htmlFor={newItem}>
         <input
           type="checkbox"
-          id={id}
+          id={newItem}
           className="round"
-          name={id}
+          name={newItem}
           checked={state}
           onChange={handleChange}
         />

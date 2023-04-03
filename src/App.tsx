@@ -27,7 +27,7 @@ const App = () => {
 
       <div>
         {items.map((item: string | null, index) => (
-          <Todo key={item} id={index.toString()} />
+          <Todo key={item} newItem={index.toString()} />
         ))}
         <CreateToDo onAdd={handleCreateToDo} hasNull={hasNull} />
       </div>
