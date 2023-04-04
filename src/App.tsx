@@ -34,7 +34,7 @@ const App = () => {
           <Todo
             key={item}
             id={item}
-            newItem={index.toString()}
+            todoId={index.toString()}
             onDelete={() => handleRemoveTodo(item)}
           />
         ))}

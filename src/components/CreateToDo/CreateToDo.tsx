@@ -12,14 +12,6 @@ const CreateToDo = ({
 }) => {
   const [isHovered, setIsHovered] = useState(false);
 
-  const getBackGroundColor = () => {
-    if (isHovered) {
-      return isHovered ? "#fbe5d2" : "#f0f1f3";
-    } else {
-      return "white";
-    }
-  };
-
   const handleMouseEnter = () => {
     setIsHovered(true);
   };
@@ -31,9 +23,6 @@ const CreateToDo = ({
   return (
     <div>
       <button
-        style={{
-          backgroundColor: getBackGroundColor(),
-        }}
         className="plus-todo"
         onClick={onAdd}
         disabled={hasNull}

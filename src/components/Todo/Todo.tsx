@@ -5,10 +5,10 @@ import { RiDeleteBin5Line } from "react-icons/ri";
 const Todo = ({
   id,
   onDelete,
-  newItem,
+  todoId,
 }: {
   id: string | null;
-  newItem: string;
+  todoId: string;
   onDelete: () => void;
 }) => {
   const [state, setState] = useState(false);
@@ -43,12 +43,12 @@ const Todo = ({
       onMouseEnter={handleMouseEnter}
       onMouseLeave={handleMouseLeave}
     >
-      <label htmlFor={newItem}>
+      <label htmlFor={todoId}>
         <input
           type="checkbox"
-          id={newItem}
+          id={todoId}
           className="round"
-          name={newItem}
+          name={todoId}
           checked={state}
           onChange={handleChange}
         />
