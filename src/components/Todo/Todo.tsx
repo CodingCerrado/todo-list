@@ -2,7 +2,15 @@ import { useState } from "react";
 import "./Todo.scss";
 import { RiDeleteBin5Line } from "react-icons/ri";
 
-const Todo = ({ id, onDelete }: { id: string; onDelete: () => void }) => {
+const Todo = ({
+  id,
+  onDelete,
+  todoId,
+}: {
+  id: string | null;
+  todoId: string;
+  onDelete: () => void;
+}) => {
   const [state, setState] = useState(false);
   const [isHovered, setIsHovered] = useState(false);
 
@@ -31,16 +39,17 @@ const Todo = ({ id, onDelete }: { id: string; onDelete: () => void }) => {
       className="todo"
       style={{
         backgroundColor: getBackGroundColor(),
+        marginBottom:10
       }}
       onMouseEnter={handleMouseEnter}
       onMouseLeave={handleMouseLeave}
     >
-      <label htmlFor={id}>
+      <label htmlFor={todoId}>
         <input
           type="checkbox"
-          id={id}
+          id={todoId}
           className="round"
-          name={id}
+          name={todoId}
           checked={state}
           onChange={handleChange}
         />
