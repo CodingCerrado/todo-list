@@ -39,6 +39,7 @@ const Todo = ({
       className="todo"
       style={{
         backgroundColor: getBackGroundColor(),
+        marginBottom:10
       }}
       onMouseEnter={handleMouseEnter}
       onMouseLeave={handleMouseLeave}
