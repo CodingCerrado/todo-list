@@ -18,8 +18,20 @@ const App = () => {
   };
 
   useEffect(() => {
+    console.log("Updated items:", items);
     setHasNull(items.includes(null));
   }, [items]);
+
+  const handleUpdateTodo = (id: string | null, newText: string | null) => {
+    const updatedItems = items.map((item) => {
+      if (item === id) {
+        return newText;
+      } else {
+        return item;
+      }
+    });
+    setItems(updatedItems);
+  };
 
   const handleRemoveTodo = (id: string | null) => {
     setItems(items.filter((item) => item !== id && item !== null));
@@ -36,6 +48,8 @@ const App = () => {
             id={item}
             todoId={index.toString()}
             onDelete={() => handleRemoveTodo(item)}
+            onUpdate={(newText: string | null) => handleUpdateTodo(item, newText)}
+            itemText={item}
           />
         ))}
 

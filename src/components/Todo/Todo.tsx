@@ -6,13 +6,18 @@ const Todo = ({
   id,
   onDelete,
   todoId,
+  onUpdate,
+  itemText,
 }: {
   id: string | null;
   todoId: string;
   onDelete: () => void;
+  itemText: string | null;
+  onUpdate: (newText: string | null) => void;
 }) => {
   const [state, setState] = useState(false);
   const [isHovered, setIsHovered] = useState(false);
+  const [text, setText] = useState(itemText);
 
   const getBackGroundColor = () => {
     if (isHovered) {
@@ -32,6 +37,17 @@ const Todo = ({
 
   const handleChange = () => {
     setState(!state);
+  };
+
+  const handleTextChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    setText(event.target.value);
+  };
+
+  const handleKeyDown = (event: React.KeyboardEvent<HTMLInputElement>) => {
+    if (event.key === "Enter") {
+      // Update the item with the new text
+      onUpdate(event.currentTarget.value);
+    }
   };
 
   return (
@@ -54,8 +70,17 @@ const Todo = ({
           onChange={handleChange}
         />
         <div className="content">
-          <span>Checkbox Label</span>
-
+          <input
+            className="content-input"
+            style={{
+              backgroundColor: getBackGroundColor(),
+            }}
+            type="text"
+            value={text?.toString()}
+            onChange={handleTextChange}
+            onKeyDown={handleKeyDown}
+          />
+        
           {isHovered && (
             <button onClick={onDelete}>
               <RiDeleteBin5Line />
