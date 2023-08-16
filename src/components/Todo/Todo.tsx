@@ -9,11 +9,11 @@ const Todo = ({
   onUpdate,
   itemText,
 }: {
-  id: string | null;
+  id: string;
   todoId: string;
   onDelete: () => void;
-  itemText: string | null;
-  onUpdate: (newText: string | null) => void;
+  itemText: string;
+  onUpdate: (newText: string) => void;
 }) => {
   const [state, setState] = useState(false);
   const [isHovered, setIsHovered] = useState(false);
@@ -41,11 +41,11 @@ const Todo = ({
 
   const handleTextChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setText(event.target.value);
+    onUpdate(event.target.value);
   };
 
   const handleKeyDown = (event: React.KeyboardEvent<HTMLInputElement>) => {
     if (event.key === "Enter") {
-      // Update the item with the new text
       onUpdate(event.currentTarget.value);
     }
   };
@@ -55,7 +55,7 @@ const Todo = ({
       className="todo"
       style={{
         backgroundColor: getBackGroundColor(),
-        marginBottom:10
+        marginBottom: 10,
       }}
       onMouseEnter={handleMouseEnter}
       onMouseLeave={handleMouseLeave}
@@ -76,11 +76,11 @@ const Todo = ({
               backgroundColor: getBackGroundColor(),
             }}
             type="text"
-            value={text?.toString()}
+            value={text}
             onChange={handleTextChange}
             onKeyDown={handleKeyDown}
           />
-        
+
           {isHovered && (
             <button onClick={onDelete}>
               <RiDeleteBin5Line />
