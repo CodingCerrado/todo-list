@@ -27,7 +27,7 @@ const App = () => {
   };
 
   const handleRemoveTodo = (id: string) => {
-    setItems(items.filter((item) => item !== id && item !== null));
+    setItems(items.filter((item) => item !== id));
   };
 
   return (
@@ -49,7 +49,7 @@ const App = () => {
         ))}
 
         <div>
-          <CreateToDo onAdd={handleCreateToDo} hasNull={items.includes('')} />
+          <CreateToDo onAdd={handleCreateToDo} hasEmptyString={items.includes('')} />
         </div>
       </div>
     </div>
