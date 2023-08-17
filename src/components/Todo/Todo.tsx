@@ -79,6 +79,7 @@ const Todo = ({
             value={text}
             onChange={handleTextChange}
             onKeyDown={handleKeyDown}
+            autoFocus={true}
           />
 
           {isHovered && (
