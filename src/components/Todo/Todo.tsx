@@ -1,6 +1,10 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import "./Todo.scss";
-import { RiDeleteBin5Line } from "react-icons/ri";
+import {
+  RiDeleteBin5Line,
+  RiCheckboxCircleFill,
+  RiCloseCircleFill,
+} from "react-icons/ri";
 
 const Todo = ({
   id,
@@ -18,6 +22,15 @@ const Todo = ({
   const [state, setState] = useState(false);
   const [isHovered, setIsHovered] = useState(false);
   const [text, setText] = useState(itemText);
+  const [isUpdating, setIsUpdating] = useState(false);
+
+  useEffect(() => {
+    if (text !== itemText) {
+      setIsUpdating(true);
+    } else {
+      setIsUpdating(false);
+    }
+  }, [text, itemText]);
 
   const getBackGroundColor = () => {
     if (isHovered) {
@@ -41,13 +54,15 @@ const Todo = ({
 
   const handleTextChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setText(event.target.value);
-    onUpdate(event.target.value);
+    // onUpdate(event.target.value);
   };
 
-  const handleKeyDown = (event: React.KeyboardEvent<HTMLInputElement>) => {
-    if (event.key === "Enter") {
-      onUpdate(event.currentTarget.value);
-    }
+  const handleStopEditing = () => {
+    setText(itemText);
+  };
+
+  const handleKeyDown = () => {
+    onUpdate(text);
   };
 
   return (
@@ -71,22 +86,36 @@ const Todo = ({
         />
         <div className="content">
           <input
+            placeholder="Please insert a text..."
             className="content-input"
             style={{
               backgroundColor: getBackGroundColor(),
+              width: "100%",
             }}
             type="text"
             value={text}
             onChange={handleTextChange}
-            onKeyDown={handleKeyDown}
-            autoFocus={true}
+            // onKeyDown={handleKeyDown}
+            // autoFocus={true}
           />
+          <div style={{ display: "flex" }}>
+            {isUpdating && (
+              <>
+                <button onClick={handleKeyDown}>
+                  <RiCheckboxCircleFill color="green" />
+                </button>
+                <button onClick={handleStopEditing}>
+                  <RiCloseCircleFill color="red" />
+                </button>
+              </>
+            )}
 
-          {isHovered && (
-            <button onClick={onDelete}>
-              <RiDeleteBin5Line />
-            </button>
-          )}
+            {isHovered && !isUpdating && (
+              <button onClick={onDelete}>
+                <RiDeleteBin5Line />
+              </button>
+            )}
+          </div>
         </div>
       </label>
     </div>
