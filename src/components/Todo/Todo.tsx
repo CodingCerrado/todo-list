@@ -3,18 +3,19 @@ import "./Todo.scss";
 import { RiDeleteBin5Line } from "react-icons/ri";
 
 const Todo = ({
-  id,
-  onDelete,
   todoId,
-  onUpdate,
   itemText,
+  onDelete,
+  onUpdate,
+  onKeyDown,
 }: {
-  id: string;
   todoId: string;
-  onDelete: () => void;
   itemText: string;
+  onDelete: () => void;
   onUpdate: (newText: string) => void;
+  onKeyDown: (newText: string) => void;
 }) => {
+
   const [state, setState] = useState(false);
   const [isHovered, setIsHovered] = useState(false);
   const [text, setText] = useState(itemText);
@@ -46,7 +47,7 @@ const Todo = ({
 
   const handleKeyDown = (event: React.KeyboardEvent<HTMLInputElement>) => {
     if (event.key === "Enter") {
-      onUpdate(event.currentTarget.value);
+      onKeyDown(event.currentTarget.value);
     }
   };
 
@@ -78,7 +79,7 @@ const Todo = ({
             type="text"
             value={text}
             onChange={handleTextChange}
-            onKeyDown={handleKeyDown}
+            onKeyDown={(event) => handleKeyDown(event)}
             autoFocus={true}
           />
 

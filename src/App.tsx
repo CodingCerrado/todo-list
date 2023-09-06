@@ -4,17 +4,36 @@ import CreateToDo from "./components/CreateToDo";
 import Header from "./components/Header";
 import Todo from "./components/Todo";
 
+interface TodoItem {
+  content: string;
+  isChecked: boolean;
+  isEmpty: boolean;
+  isUpdating: boolean;
+}
+
 const App = () => {
-  const [items, setItems] = useState<string[]>(["Item 1", "Item 2", "Item 3"]);
+  const [items, setItems] = useState<TodoItem[]>([
+    { content: "Item 1", isChecked: false, isEmpty: false, isUpdating: false },
+    { content: "Item 2", isChecked: false, isEmpty: false, isUpdating: false },
+    { content: "Item 3", isChecked: false, isEmpty: false, isUpdating: false },
+  ]);
 
   const handleCreateToDo = () => {
-    setItems([...items, ""]);
+    setItems([
+      ...items,
+      {
+        content: "",
+        isChecked: false,
+        isEmpty: true,
+        isUpdating: false,
+      },
+    ]);
   };
 
   const handleUpdateTodo = (id: string, newText: string) => {
     const updatedItems = items.map((item) => {
-      if (item === id) {
-        return newText;
+      if (item.content === id) {
+        return { ...item, content: newText };
       } else {
         return item;
       }
@@ -23,7 +42,7 @@ const App = () => {
   };
 
   const handleRemoveTodo = (id: string) => {
-    setItems(items.filter((item) => item !== id));
+    setItems(items.filter((item) => item.content !== id));
   };
 
   return (
@@ -31,21 +50,25 @@ const App = () => {
       <Header />
       <div>Content</div>
       <div>
-        {items.map((item: string, index) => (
+        {items.map((item: TodoItem, index) => (
           <Todo
-            key={item}
-            id={item}
-            todoId={index.toString()}
-            onDelete={() => handleRemoveTodo(item)}
-            onUpdate={(newText: string) => handleUpdateTodo(item, newText)}
-            itemText={item}
+            key={index}
+            todoId={item.content}
+            itemText={item.content}
+            onDelete={() => handleRemoveTodo(item.content)}
+            onUpdate={(newText: string) =>
+              handleUpdateTodo(item.content, newText)
+            }
+            onKeyDown={(newText: string) =>
+              handleUpdateTodo(item.content, newText)
+            }
           />
         ))}
 
         <div>
           <CreateToDo
             onAdd={handleCreateToDo}
-            hasEmptyString={items.includes("")}
+            hasEmptyString={items.some((item) => item.isEmpty)}
           />
         </div>
       </div>
