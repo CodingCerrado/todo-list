@@ -5,10 +5,10 @@ import { BiPlusCircle } from "react-icons/bi";
 
 const CreateToDo = ({
   onAdd,
-  hasNull,
+  hasEmptyString,
 }: {
   onAdd: () => void;
-  hasNull: boolean;
+  hasEmptyString: boolean;
 }) => {
   const [isHovered, setIsHovered] = useState(false);
 
@@ -25,7 +25,7 @@ const CreateToDo = ({
       <button
         className="plus-todo"
         onClick={onAdd}
-        disabled={hasNull}
+        disabled={hasEmptyString}
         onMouseEnter={handleMouseEnter}
         onMouseLeave={handleMouseLeave}
       >
