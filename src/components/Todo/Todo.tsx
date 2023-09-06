@@ -6,13 +6,18 @@ const Todo = ({
   id,
   onDelete,
   todoId,
+  onUpdate,
+  itemText,
 }: {
-  id: string | null;
+  id: string;
   todoId: string;
   onDelete: () => void;
+  itemText: string;
+  onUpdate: (newText: string) => void;
 }) => {
   const [state, setState] = useState(false);
   const [isHovered, setIsHovered] = useState(false);
+  const [text, setText] = useState(itemText);
 
   const getBackGroundColor = () => {
     if (isHovered) {
@@ -34,12 +39,23 @@ const Todo = ({
     setState(!state);
   };
 
+  const handleTextChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    setText(event.target.value);
+    onUpdate(event.target.value);
+  };
+
+  const handleKeyDown = (event: React.KeyboardEvent<HTMLInputElement>) => {
+    if (event.key === "Enter") {
+      onUpdate(event.currentTarget.value);
+    }
+  };
+
   return (
     <div
       className="todo"
       style={{
         backgroundColor: getBackGroundColor(),
-        marginBottom:10
+        marginBottom: 10,
       }}
       onMouseEnter={handleMouseEnter}
       onMouseLeave={handleMouseLeave}
@@ -54,7 +70,17 @@ const Todo = ({
           onChange={handleChange}
         />
         <div className="content">
-          <span>Checkbox Label</span>
+          <input
+            className="content-input"
+            style={{
+              backgroundColor: getBackGroundColor(),
+            }}
+            type="text"
+            value={text}
+            onChange={handleTextChange}
+            onKeyDown={handleKeyDown}
+            autoFocus={true}
+          />
 
           {isHovered && (
             <button onClick={onDelete}>
