@@ -64,6 +64,11 @@ const App = () => {
             onKeyDown={(newText: string) =>
               handleUpdateTodo(item.content, newText)
             }
+            onUpdateEmptyStatus={(status: boolean) => {
+              const updatedItems = [...items];
+              updatedItems[index].isEmpty = status;
+              setItems(updatedItems);
+            }}
           />
         ))}
 
