@@ -43,11 +43,13 @@ const Todo = ({
   const handleTextChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setText(event.target.value);
     onUpdate(event.target.value);
+
   };
 
   const handleKeyDown = (event: React.KeyboardEvent<HTMLInputElement>) => {
     if (event.key === "Enter") {
-      onKeyDown(event.currentTarget.value);
+      onUpdate(event.currentTarget.value);
+      event.currentTarget.blur();
     }
   };
 
@@ -79,8 +81,7 @@ const Todo = ({
             type="text"
             value={text}
             onChange={handleTextChange}
-            onKeyDown={(event) => handleKeyDown(event)}
-            autoFocus={true}
+            onKeyDown={handleKeyDown}
           />
 
           {isHovered && (

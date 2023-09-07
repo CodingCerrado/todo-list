@@ -18,6 +18,8 @@ const App = () => {
     { content: "Item 3", isChecked: false, isEmpty: false, isUpdating: false },
   ]);
 
+  console.log(items);
+
   const handleCreateToDo = () => {
     setItems([
       ...items,
