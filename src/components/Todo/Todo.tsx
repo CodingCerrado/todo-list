@@ -42,16 +42,19 @@ const Todo = ({
   };
 
   const handleTextChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    setText(event.target.value);
-    onUpdate(event.target.value);
-    onUpdateEmptyStatus(false);
+    const newValue = event.target.value;
+    setText(newValue);
+    onUpdate(newValue);
+    if (newValue === '') {
+      onUpdateEmptyStatus(true)
+    } else {
+      onUpdateEmptyStatus(false);
+    }
   };
 
   const handleKeyDown = (event: React.KeyboardEvent<HTMLInputElement>) => {
     if (event.key === "Enter") {
       onUpdate(event.currentTarget.value);
-      onUpdateEmptyStatus(false);
-
       event.currentTarget.blur();
     }
   };
