@@ -69,6 +69,7 @@ const App = () => {
               updatedItems[index].isEmpty = status;
               setItems(updatedItems);
             }}
+            onAdd={handleCreateToDo}
           />
         ))}
 
