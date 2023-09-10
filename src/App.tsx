@@ -5,6 +5,7 @@ import Header from "./components/Header";
 import Todo from "./components/Todo";
 
 interface TodoItem {
+  id: number;
   content: string;
   isChecked: boolean;
   isEmpty: boolean;
@@ -13,10 +14,12 @@ interface TodoItem {
 
 const App = () => {
   const [items, setItems] = useState<TodoItem[]>([
-    { content: "Item 1", isChecked: false, isEmpty: false, isUpdating: false },
-    { content: "Item 2", isChecked: false, isEmpty: false, isUpdating: false },
-    { content: "Item 3", isChecked: false, isEmpty: false, isUpdating: false },
+    { id: 1, content: "Item 1", isChecked: false, isEmpty: false, isUpdating: false },
+    { id: 2, content: "Item 2", isChecked: false, isEmpty: false, isUpdating: false },
+    { id: 3, content: "Item 3", isChecked: false, isEmpty: false, isUpdating: false },
   ]);
+
+  const [nextId, setNextId] = useState<number>(4);
 
   console.log(items);
 
@@ -24,12 +27,14 @@ const App = () => {
     setItems([
       ...items,
       {
+        id: nextId,
         content: "",
         isChecked: false,
         isEmpty: true,
         isUpdating: false,
       },
     ]);
+    setNextId(nextId + 1);
   };
 
   const handleUpdateTodo = (id: string, newText: string) => {
@@ -43,8 +48,8 @@ const App = () => {
     setItems(updatedItems);
   };
 
-  const handleRemoveTodo = (id: string) => {
-    setItems(items.filter((item) => item.content !== id));
+  const handleRemoveTodo = (idToRemove: number) => {
+    setItems(items.filter((item) => item.id !== idToRemove));
   };
 
   return (
@@ -54,10 +59,10 @@ const App = () => {
       <div>
         {items.map((item: TodoItem, index) => (
           <Todo
-            key={index}
-            todoId={item.content}
+            key={item.id}
+            todoId={item.id}
             itemText={item.content}
-            onDelete={() => handleRemoveTodo(item.content)}
+            onDelete={() => handleRemoveTodo(item.id)}
             onUpdate={(newText: string) =>
               handleUpdateTodo(item.content, newText)
             }
@@ -66,7 +71,8 @@ const App = () => {
             }
             onUpdateEmptyStatus={(status: boolean) => {
               const updatedItems = [...items];
-              updatedItems[index].isEmpty = status;
+              const index = updatedItems.findIndex((i) => i.id === item.id);
+               updatedItems[index].isEmpty = status;
               setItems(updatedItems);
             }}
             onAdd={handleCreateToDo}

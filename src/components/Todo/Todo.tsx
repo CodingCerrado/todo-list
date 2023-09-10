@@ -11,7 +11,7 @@ const Todo = ({
   onUpdateEmptyStatus,
   onAdd
 }: {
-  todoId: string;
+  todoId: number;
   itemText: string;
   onDelete: () => void;
   onUpdate: (newText: string) => void;
@@ -71,12 +71,12 @@ const Todo = ({
       onMouseEnter={handleMouseEnter}
       onMouseLeave={handleMouseLeave}
     >
-      <label htmlFor={todoId}>
+      <label htmlFor={String(todoId)}>
         <input
           type="checkbox"
-          id={todoId}
+          id={String(todoId)}
           className="round"
-          name={todoId}
+          name={String(todoId)}
           checked={state}
           onChange={handleChange}
         />
