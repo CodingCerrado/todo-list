@@ -5,7 +5,7 @@ import Header from "./components/Header";
 import Todo from "./components/Todo";
 
 interface TodoItem {
-  id: number;
+  todoId: number;
   content: string;
   isChecked: boolean;
   isEmpty: boolean;
@@ -14,12 +14,32 @@ interface TodoItem {
 
 const App = () => {
   const [items, setItems] = useState<TodoItem[]>([
-    { id: 1, content: "Item 1", isChecked: false, isEmpty: false, isUpdating: false },
-    { id: 2, content: "Item 2", isChecked: false, isEmpty: false, isUpdating: false },
-    { id: 3, content: "Item 3", isChecked: false, isEmpty: false, isUpdating: false },
+    {
+      todoId: 1,
+      content: "Item 1",
+      isChecked: false,
+      isEmpty: false,
+      isUpdating: false,
+    },
+    {
+      todoId: 2,
+      content: "Item 2",
+      isChecked: false,
+      isEmpty: false,
+      isUpdating: false,
+    },
+    {
+      todoId: 3,
+      content: "Item 3",
+      isChecked: false,
+      isEmpty: false,
+      isUpdating: false,
+    },
   ]);
 
-  const [nextId, setNextId] = useState<number>(4);
+//  Vamos usar a variável isUpdating no projeto? Ou podemos remover?
+
+  const [nextTodoId, setNextTodoId] = useState<number>(4);
 
   console.log(items);
 
@@ -27,19 +47,19 @@ const App = () => {
     setItems([
       ...items,
       {
-        id: nextId,
+        todoId: nextTodoId,
         content: "",
         isChecked: false,
         isEmpty: true,
         isUpdating: false,
       },
     ]);
-    setNextId(nextId + 1);
+    setNextTodoId(nextTodoId + 1);
   };
 
-  const handleUpdateTodo = (id: string, newText: string) => {
+  const handleUpdateTodo = (todoId: number, newText: string) => {
     const updatedItems = items.map((item) => {
-      if (item.content === id) {
+      if (item.todoId === todoId) {
         return { ...item, content: newText };
       } else {
         return item;
@@ -48,8 +68,8 @@ const App = () => {
     setItems(updatedItems);
   };
 
-  const handleRemoveTodo = (idToRemove: number) => {
-    setItems(items.filter((item) => item.id !== idToRemove));
+  const handleRemoveTodo = (todoIdToRemove: number) => {
+    setItems(items.filter((item) => item.todoId !== todoIdToRemove));
   };
 
   return (
@@ -59,19 +79,19 @@ const App = () => {
       <div>
         {items.map((item: TodoItem, index) => (
           <Todo
-            key={item.id}
-            todoId={item.id}
+            key={item.todoId}
+            todoId={item.todoId}
             itemText={item.content}
-            onDelete={() => handleRemoveTodo(item.id)}
+            onDelete={() => handleRemoveTodo(item.todoId)}
             onUpdate={(newText: string) =>
-              handleUpdateTodo(item.content, newText)
+              handleUpdateTodo(item.todoId, newText)
             }
             onKeyDown={(newText: string) =>
-              handleUpdateTodo(item.content, newText)
+              handleUpdateTodo(item.todoId, newText)
             }
             onUpdateEmptyStatus={(status: boolean) => {
               const updatedItems = [...items];
-              const index = updatedItems.findIndex((i) => i.id === item.id);
+              const index = updatedItems.findIndex((i) => i.todoId === item.todoId);
                updatedItems[index].isEmpty = status;
               setItems(updatedItems);
             }}
