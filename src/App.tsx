@@ -37,7 +37,7 @@ const App = () => {
     },
   ]);
 
-//  Vamos usar a variável isUpdating no projeto? Ou podemos remover?
+  //  Vamos usar a variável isUpdating no projeto? Ou podemos remover?
 
   const [nextTodoId, setNextTodoId] = useState<number>(4);
 
@@ -91,11 +91,15 @@ const App = () => {
             }
             onUpdateEmptyStatus={(status: boolean) => {
               const updatedItems = [...items];
-              const index = updatedItems.findIndex((i) => i.todoId === item.todoId);
-               updatedItems[index].isEmpty = status;
+              const index = updatedItems.findIndex(
+                (i) => i.todoId === item.todoId
+              );
+              updatedItems[index].isEmpty = status;
               setItems(updatedItems);
             }}
             onAdd={handleCreateToDo}
+            hasEmptyString={items.some((item) => item.isEmpty)}
+            //apenas inseri o hasEmptyString aqui e na condicional também!!
           />
         ))}
 

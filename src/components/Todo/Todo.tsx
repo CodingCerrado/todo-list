@@ -9,7 +9,8 @@ const Todo = ({
   onUpdate,
   onKeyDown,
   onUpdateEmptyStatus,
-  onAdd
+  onAdd,
+  hasEmptyString,
 }: {
   todoId: number;
   itemText: string;
@@ -18,6 +19,7 @@ const Todo = ({
   onKeyDown: (newText: string) => void;
   onUpdateEmptyStatus: (status: boolean) => void;
   onAdd: () => void;
+  hasEmptyString: boolean;
 }) => {
   const [state, setState] = useState(false);
   const [isHovered, setIsHovered] = useState(false);
@@ -47,15 +49,19 @@ const Todo = ({
     const newValue = event.target.value;
     setText(newValue);
     onUpdate(newValue);
-    if (newValue === '') {
-      onUpdateEmptyStatus(true)
+    if (newValue === "") {
+      onUpdateEmptyStatus(true);
     } else {
       onUpdateEmptyStatus(false);
     }
   };
 
   const handleKeyDown = (event: React.KeyboardEvent<HTMLInputElement>) => {
-    if (event.key === "Enter" && event.currentTarget.value !== "") {
+    if (
+      event.key === "Enter" &&
+      event.currentTarget.value !== "" &&
+      !hasEmptyString
+    ) {
       event.currentTarget.blur();
       onAdd();
     }
