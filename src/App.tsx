@@ -37,6 +37,7 @@ const App = () => {
     },
   ]);
 
+
 //  Vamos usar a variável isUpdating no projeto? Ou podemos remover?
 
   const [nextTodoId, setNextTodoId] = useState<number>(4);
@@ -57,16 +58,17 @@ const App = () => {
     setNextTodoId(nextTodoId + 1);
   };
 
-  const handleUpdateTodo = (todoId: number, newText: string) => {
-    const updatedItems = items.map((item) => {
-      if (item.todoId === todoId) {
-        return { ...item, content: newText };
-      } else {
-        return item;
-      }
-    });
-    setItems(updatedItems);
-  };
+const handleUpdateTodo = (todoId: number, newText: string) => {
+  const updatedItems = items.map((item) => {
+    if (item.todoId === todoId) {
+      return { ...item, content: newText, isUpdating: true };
+    } else {
+      return item;
+    }
+  });
+  setItems(updatedItems);
+};
+
 
   const handleRemoveTodo = (todoIdToRemove: number) => {
     setItems(items.filter((item) => item.todoId !== todoIdToRemove));

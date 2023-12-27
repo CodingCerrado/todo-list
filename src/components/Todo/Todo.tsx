@@ -9,7 +9,7 @@ const Todo = ({
   onUpdate,
   onKeyDown,
   onUpdateEmptyStatus,
-  onAdd
+  onAdd,
 }: {
   todoId: number;
   itemText: string;
@@ -47,8 +47,8 @@ const Todo = ({
     const newValue = event.target.value;
     setText(newValue);
     onUpdate(newValue);
-    if (newValue === '') {
-      onUpdateEmptyStatus(true)
+    if (newValue === "") {
+      onUpdateEmptyStatus(true);
     } else {
       onUpdateEmptyStatus(false);
     }
