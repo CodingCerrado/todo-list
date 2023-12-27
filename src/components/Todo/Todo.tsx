@@ -3,17 +3,21 @@ import "./Todo.scss";
 import { RiDeleteBin5Line } from "react-icons/ri";
 
 const Todo = ({
-  id,
   onDelete,
   todoId,
   onUpdate,
   itemText,
+  onPressEnter,
+  onAdd,
+  hasEmptyString,
 }: {
-  id: string;
-  todoId: string;
+  todoId: number;
   onDelete: () => void;
   itemText: string;
   onUpdate: (newText: string) => void;
+  onPressEnter: (newText: string) => void;
+  onAdd: () => void;
+  hasEmptyString: boolean;
 }) => {
   const [state, setState] = useState(false);
   const [isHovered, setIsHovered] = useState(false);
@@ -40,13 +44,19 @@ const Todo = ({
   };
 
   const handleTextChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    setText(event.target.value);
-    onUpdate(event.target.value);
+    const newValue = event.target.value;
+    setText(newValue);
+    onUpdate(newValue);
   };
 
   const handleKeyDown = (event: React.KeyboardEvent<HTMLInputElement>) => {
-    if (event.key === "Enter") {
-      onUpdate(event.currentTarget.value);
+    if (
+      event.key === "Enter" &&
+      event.currentTarget.value !== "" &&
+      !hasEmptyString
+    ) {
+      event.currentTarget.blur();
+      onAdd();
     }
   };
 
@@ -60,12 +70,12 @@ const Todo = ({
       onMouseEnter={handleMouseEnter}
       onMouseLeave={handleMouseLeave}
     >
-      <label htmlFor={todoId}>
+      <label htmlFor={String(todoId)}>
         <input
           type="checkbox"
-          id={todoId}
+          id={String(todoId)}
           className="round"
-          name={todoId}
+          name={String(todoId)}
           checked={state}
           onChange={handleChange}
         />

@@ -5,6 +5,7 @@ import Header from "./components/Header";
 import Todo from "./components/Todo";
 
 interface itemsTypes {
+  todoId: number;
   content: string;
   isChecked: boolean;
   isEmpty: boolean;
@@ -14,18 +15,21 @@ interface itemsTypes {
 const App = () => {
   const [items, setItems] = useState<itemsTypes[]>([
     {
+      todoId: 1,
       content: "Item 1",
       isChecked: false,
       isEmpty: false,
       isUpdating: false,
     },
     {
+      todoId: 2,
       content: "Item 2",
       isChecked: false,
       isEmpty: false,
       isUpdating: false,
     },
     {
+      todoId: 3,
       content: "Item 3",
       isChecked: false,
       isEmpty: false,
@@ -33,19 +37,27 @@ const App = () => {
     },
   ]);
 
+  const [nextTodoId, setNextTodoId] = useState<number>(4);
+
+  console.log(items);
+
   const handleCreateToDo = () => {
-    const newItem: itemsTypes = {
-      content: "",
-      isChecked: false,
-      isEmpty: true,
-      isUpdating: false,
-    };
-    setItems([...items, newItem]);
+    setItems([
+      ...items,
+      {
+        todoId: nextTodoId,
+        content: "",
+        isChecked: false,
+        isEmpty: true,
+        isUpdating: false,
+      },
+    ]);
+    setNextTodoId(nextTodoId + 1);
   };
 
-  const handleUpdateTodo = (id: string, newText: string) => {
+  const handleUpdateTodo = (todoId: number, newText: string) => {
     const updatedItems = items.map((item) => {
-      if (item.content === id) {
+      if (item.todoId === todoId) {
         return { ...item, content: newText };
       } else {
         return item;
@@ -54,8 +66,8 @@ const App = () => {
     setItems(updatedItems);
   };
 
-  const handleRemoveTodo = (id: string) => {
-    setItems(items.filter((item) => item.content !== id));
+  const handleRemoveTodo = (todoIdToRemove: number) => {
+    setItems(items.filter((item) => item.todoId !== todoIdToRemove));
   };
 
   return (
@@ -65,14 +77,18 @@ const App = () => {
       <div>
         {items.map((item: itemsTypes, index) => (
           <Todo
-            key={index.toString()}
-            id={item.content}
-            todoId={index.toString()}
-            onDelete={() => handleRemoveTodo(item.content)}
+            key={item.todoId}
+            todoId={item.todoId}
+            onDelete={() => handleRemoveTodo(item.todoId)}
             onUpdate={(newText: string) =>
-              handleUpdateTodo(item.content, newText)
+              handleUpdateTodo(item.todoId, newText)
             }
             itemText={item.content}
+            onPressEnter={(newText: string) =>
+              handleUpdateTodo(item.todoId, newText)
+            }
+            onAdd={handleCreateToDo}
+            hasEmptyString={items.some((item) => item.isEmpty)}
           />
         ))}
 
