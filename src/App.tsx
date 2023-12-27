@@ -89,6 +89,14 @@ const App = () => {
             }
             onAdd={handleCreateToDo}
             hasEmptyString={items.some((item) => item.isEmpty)}
+            onUpdateEmptyStatus={(status: boolean) => {
+              const updatedItems = [...items];
+              const index = updatedItems.findIndex(
+                (i) => i.todoId === item.todoId
+              );
+              updatedItems[index].isEmpty = status;
+              // setItems(updatedItems); (ERRO TA AQUI)
+            }}
           />
         ))}
 
