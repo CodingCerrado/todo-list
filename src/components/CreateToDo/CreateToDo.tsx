@@ -20,6 +20,8 @@ const CreateToDo = ({
     setIsHovered(false);
   };
 
+  // isHovered was not used and does not have a working logic yet !!!
+
   return (
     <div>
       <button

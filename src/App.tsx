@@ -7,9 +7,8 @@ import Todo from "./components/Todo";
 interface itemsTypes {
   todoId: number;
   content: string;
-  isChecked: boolean;
+  isChecked: boolean; //not working yet
   isEmpty: boolean;
-  isUpdating: boolean;
 }
 
 const App = () => {
@@ -19,46 +18,50 @@ const App = () => {
       content: "Item 1",
       isChecked: false,
       isEmpty: false,
-      isUpdating: false,
     },
     {
       todoId: 2,
       content: "Item 2",
       isChecked: false,
       isEmpty: false,
-      isUpdating: false,
     },
     {
       todoId: 3,
       content: "Item 3",
       isChecked: false,
       isEmpty: false,
-      isUpdating: false,
     },
   ]);
 
-  const [nextTodoId, setNextTodoId] = useState<number>(4);
-
   console.log(items);
+
+  const getHighestId = () => {
+    const itemsId = items.map((item) => item.todoId);
+    return Math.max(...itemsId) + 1;
+  };
+
+  // console.log(getHighestId());
 
   const handleCreateToDo = () => {
     setItems([
       ...items,
       {
-        todoId: nextTodoId,
+        todoId: getHighestId(),
         content: "",
         isChecked: false,
         isEmpty: true,
-        isUpdating: false,
       },
     ]);
-    setNextTodoId(nextTodoId + 1);
   };
 
   const handleUpdateTodo = (todoId: number, newText: string) => {
     const updatedItems = items.map((item) => {
       if (item.todoId === todoId) {
-        return { ...item, content: newText };
+        return {
+          ...item,
+          content: newText,
+          isEmpty: newText === "" ? true : false,
+        };
       } else {
         return item;
       }
@@ -84,19 +87,6 @@ const App = () => {
               handleUpdateTodo(item.todoId, newText)
             }
             itemText={item.content}
-            onPressEnter={(newText: string) =>
-              handleUpdateTodo(item.todoId, newText)
-            }
-            onAdd={handleCreateToDo}
-            hasEmptyString={items.some((item) => item.isEmpty)}
-            onUpdateEmptyStatus={(status: boolean) => {
-              const updatedItems = [...items];
-              const index = updatedItems.findIndex(
-                (i) => i.todoId === item.todoId
-              );
-              updatedItems[index].isEmpty = status;
-              // setItems(updatedItems); (ERRO TA AQUI)
-            }}
           />
         ))}
 

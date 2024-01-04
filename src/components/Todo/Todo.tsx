@@ -7,27 +7,19 @@ const Todo = ({
   todoId,
   onUpdate,
   itemText,
-  onPressEnter,
-  onAdd,
-  hasEmptyString,
-  onUpdateEmptyStatus,
 }: {
   todoId: number;
   onDelete: () => void;
   itemText: string;
   onUpdate: (newText: string) => void;
-  onPressEnter: (newText: string) => void;
-  onAdd: () => void;
-  hasEmptyString: boolean;
-  onUpdateEmptyStatus: (status: boolean) => void;
 }) => {
-  const [state, setState] = useState(false);
+  const [isDone, setIsDone] = useState(false);
   const [isHovered, setIsHovered] = useState(false);
   const [text, setText] = useState(itemText);
 
   const getBackGroundColor = () => {
     if (isHovered) {
-      return state ? "#fbe5d2" : "#f0f1f3";
+      return isDone ? "#fbe5d2" : "#f0f1f3";
     } else {
       return "white";
     }
@@ -42,29 +34,13 @@ const Todo = ({
   };
 
   const handleChange = () => {
-    setState(!state);
+    setIsDone(!isDone);
   };
 
   const handleTextChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     const newValue = event.target.value;
     setText(newValue);
     onUpdate(newValue);
-    if (newValue === "") {
-      onUpdateEmptyStatus(true);
-    } else {
-      onUpdateEmptyStatus(false);
-    }
-  };
-
-  const handleKeyDown = (event: React.KeyboardEvent<HTMLInputElement>) => {
-    if (
-      event.key === "Enter" &&
-      event.currentTarget.value !== "" &&
-      !hasEmptyString
-    ) {
-      event.currentTarget.blur();
-      onAdd();
-    }
   };
 
   return (
@@ -83,7 +59,7 @@ const Todo = ({
           id={String(todoId)}
           className="round"
           name={String(todoId)}
-          checked={state}
+          checked={isDone}
           onChange={handleChange}
         />
         <div className="content">
@@ -95,7 +71,6 @@ const Todo = ({
             type="text"
             value={text}
             onChange={handleTextChange}
-            onKeyDown={handleKeyDown}
             autoFocus={true}
           />
 
