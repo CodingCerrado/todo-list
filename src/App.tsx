@@ -37,7 +37,10 @@ const App = () => {
     },
   ]);
 
-  const [nextTodoId, setNextTodoId] = useState<number>(4);
+  const getNewId = () => {
+    const itemsId = items.map((item) => item.todoId);
+    return Math.max(...itemsId) + 1;
+  };
 
   console.log(items);
 
@@ -45,20 +48,23 @@ const App = () => {
     setItems([
       ...items,
       {
-        todoId: nextTodoId,
+        todoId: getNewId(),
         content: "",
         isChecked: false,
         isEmpty: true,
         isUpdating: false,
       },
     ]);
-    setNextTodoId(nextTodoId + 1);
   };
 
   const handleUpdateTodo = (todoId: number, newText: string) => {
     const updatedItems = items.map((item) => {
       if (item.todoId === todoId) {
-        return { ...item, content: newText };
+        return {
+          ...item,
+          content: newText,
+          isEmpty: newText === "" ? true : false,
+        };
       } else {
         return item;
       }
@@ -87,16 +93,6 @@ const App = () => {
             onPressEnter={(newText: string) =>
               handleUpdateTodo(item.todoId, newText)
             }
-            onAdd={handleCreateToDo}
-            hasEmptyString={items.some((item) => item.isEmpty)}
-            onUpdateEmptyStatus={(status: boolean) => {
-              const updatedItems = [...items];
-              const index = updatedItems.findIndex(
-                (i) => i.todoId === item.todoId
-              );
-              updatedItems[index].isEmpty = status;
-              // setItems(updatedItems); (ERRO TA AQUI)
-            }}
           />
         ))}
 
