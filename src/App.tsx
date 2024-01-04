@@ -9,7 +9,6 @@ interface itemsTypes {
   content: string;
   isChecked: boolean;
   isEmpty: boolean;
-  isUpdating: boolean;
 }
 
 const App = () => {
@@ -19,27 +18,24 @@ const App = () => {
       content: "Item 1",
       isChecked: false,
       isEmpty: false,
-      isUpdating: false,
     },
     {
       todoId: 2,
       content: "Item 2",
       isChecked: false,
       isEmpty: false,
-      isUpdating: false,
     },
     {
       todoId: 3,
       content: "Item 3",
       isChecked: false,
       isEmpty: false,
-      isUpdating: false,
     },
   ]);
 
   const getNewId = () => {
     const itemsId = items.map((item) => item.todoId);
-    return Math.max(...itemsId) + 1;
+    return itemsId.length ? Math.max(...itemsId) + 1 : 1;
   };
 
   console.log(items);
@@ -52,7 +48,6 @@ const App = () => {
         content: "",
         isChecked: false,
         isEmpty: true,
-        isUpdating: false,
       },
     ]);
   };
