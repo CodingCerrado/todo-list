@@ -33,14 +33,10 @@ const App = () => {
     },
   ]);
 
-  console.log(items);
-
   const getHighestId = () => {
     const itemsId = items.map((item) => item.todoId);
-    return Math.max(...itemsId) + 1;
+    return itemsId.length ? Math.max(...itemsId) + 1 : 1;
   };
-
-  // console.log(getHighestId());
 
   const handleCreateToDo = () => {
     setItems([

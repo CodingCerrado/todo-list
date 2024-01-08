@@ -13,13 +13,13 @@ const Todo = ({
   itemText: string;
   onUpdate: (newText: string) => void;
 }) => {
-  const [isDone, setIsDone] = useState(false);
+  const [isSelected, setIsSelected] = useState(false);
   const [isHovered, setIsHovered] = useState(false);
   const [text, setText] = useState(itemText);
 
   const getBackGroundColor = () => {
     if (isHovered) {
-      return isDone ? "#fbe5d2" : "#f0f1f3";
+      return isSelected ? "#fbe5d2" : "#f0f1f3";
     } else {
       return "white";
     }
@@ -34,7 +34,7 @@ const Todo = ({
   };
 
   const handleChange = () => {
-    setIsDone(!isDone);
+    setIsSelected(!isSelected);
   };
 
   const handleTextChange = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -59,7 +59,7 @@ const Todo = ({
           id={String(todoId)}
           className="round"
           name={String(todoId)}
-          checked={isDone}
+          checked={isSelected}
           onChange={handleChange}
         />
         <div className="content">
