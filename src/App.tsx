@@ -33,6 +33,44 @@ const App = () => {
     },
   ]);
 
+  useEffect(() => {
+    
+    const json = localStorage.getItem("items");
+    const loadedItems = JSON.parse(json || "");
+    const prevItems = [...items]
+    
+    if (loadedItems) {
+      // set local storage like this
+      setItems((items) => [...items, {...loadedItems}])
+    }
+  }, []);
+
+    useEffect(() => {
+      localStorage.setItem("items", JSON.stringify(items));
+    }, [items]);
+
+
+
+
+  
+
+  // useEffect(() => {
+  //   const items = localStorage.getItem("items");
+  //   const loadedItems = JSON.parse(items || "");
+  //   if (loadedItems) {
+  //     setItems((prevItems) => [...prevItems, ...loadedItems]);
+  //   }
+  // }, [])
+  
+  //   useEffect(() => {
+  //     const items = JSON.parse(localStorage.getItem("items") || "");
+  //     if (items) {
+  //       setItems(items);
+  //     }
+  //   }, []);
+    
+
+
   const getHighestId = () => {
     const itemsId = items.map((item) => item.todoId);
     return itemsId.length ? Math.max(...itemsId) + 1 : 1;
