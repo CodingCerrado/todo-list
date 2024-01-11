@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import "./App.scss";
 import CreateToDo from "./components/CreateToDo";
 import Header from "./components/Header";
@@ -32,6 +32,23 @@ const App = () => {
       isEmpty: false,
     },
   ]);
+
+  useEffect(() => {
+    const fromLocal = localStorage.getItem("items");
+    const itemsFromLocal = fromLocal ? JSON.parse(fromLocal) : undefined;
+
+    if (itemsFromLocal) {
+      setItems(itemsFromLocal);
+    }
+  }, []);
+
+  useEffect(() => {
+    const delayDebounce = setTimeout(() => {
+      localStorage.setItem("items", JSON.stringify(items));
+    }, 2000);
+
+    return () => clearTimeout(delayDebounce);
+  }, [items]);
 
   const getHighestId = () => {
     const itemsId = items.map((item) => item.todoId);
