@@ -69,7 +69,7 @@ const Todo = ({
               backgroundColor: getBackGroundColor(),
             }}
             type="text"
-            value={text}
+            value={itemText}
             onChange={handleTextChange}
             autoFocus={true}
           />
