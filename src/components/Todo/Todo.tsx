@@ -3,20 +3,23 @@ import "./Todo.scss";
 import { RiDeleteBin5Line } from "react-icons/ri";
 
 const Todo = ({
-  id,
   onDelete,
   todoId,
+  onUpdate,
+  itemText,
 }: {
-  id: string | null;
-  todoId: string;
+  todoId: number;
   onDelete: () => void;
+  itemText: string;
+  onUpdate: (newText: string) => void;
 }) => {
-  const [state, setState] = useState(false);
+  const [isSelected, setIsSelected] = useState(false);
   const [isHovered, setIsHovered] = useState(false);
+  const [text, setText] = useState(itemText);
 
   const getBackGroundColor = () => {
     if (isHovered) {
-      return state ? "#fbe5d2" : "#f0f1f3";
+      return isSelected ? "#fbe5d2" : "#f0f1f3";
     } else {
       return "white";
     }
@@ -31,7 +34,13 @@ const Todo = ({
   };
 
   const handleChange = () => {
-    setState(!state);
+    setIsSelected(!isSelected);
+  };
+
+  const handleTextChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    const newValue = event.target.value;
+    setText(newValue);
+    onUpdate(newValue);
   };
 
   return (
@@ -39,22 +48,31 @@ const Todo = ({
       className="todo"
       style={{
         backgroundColor: getBackGroundColor(),
-        marginBottom:10
+        marginBottom: 10,
       }}
       onMouseEnter={handleMouseEnter}
       onMouseLeave={handleMouseLeave}
     >
-      <label htmlFor={todoId}>
+      <label htmlFor={String(todoId)}>
         <input
           type="checkbox"
-          id={todoId}
+          id={String(todoId)}
           className="round"
-          name={todoId}
-          checked={state}
+          name={String(todoId)}
+          checked={isSelected}
           onChange={handleChange}
         />
         <div className="content">
-          <span>Checkbox Label</span>
+          <input
+            className="content-input"
+            style={{
+              backgroundColor: getBackGroundColor(),
+            }}
+            type="text"
+            value={text}
+            onChange={handleTextChange}
+            autoFocus={true}
+          />
 
           {isHovered && (
             <button onClick={onDelete}>
