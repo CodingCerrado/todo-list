@@ -1,8 +1,9 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import "./App.scss";
 import CreateToDo from "./components/CreateToDo";
 import Header from "./components/Header";
 import Todo from "./components/Todo";
+import { stringify } from "querystring";
 
 interface itemsTypes {
   todoId: number;
@@ -11,27 +12,44 @@ interface itemsTypes {
   isEmpty: boolean;
 }
 
+const initialItems = [
+  {
+    todoId: 1,
+    content: "Item 1",
+    isChecked: false,
+    isEmpty: false,
+  },
+  {
+    todoId: 2,
+    content: "Item 2",
+    isChecked: false,
+    isEmpty: false,
+  },
+  {
+    todoId: 3,
+    content: "Item 3",
+    isChecked: false,
+    isEmpty: false,
+  },
+];
+
 const App = () => {
-  const [items, setItems] = useState<itemsTypes[]>([
-    {
-      todoId: 1,
-      content: "Item 1",
-      isChecked: false,
-      isEmpty: false,
-    },
-    {
-      todoId: 2,
-      content: "Item 2",
-      isChecked: false,
-      isEmpty: false,
-    },
-    {
-      todoId: 3,
-      content: "Item 3",
-      isChecked: false,
-      isEmpty: false,
-    },
-  ]);
+  const [items, setItems] = useState<itemsTypes[]>(initialItems || []);
+
+  useEffect(() => {
+    const itemsFromLocalStorage = localStorage.getItem("items");
+    const jsonData = JSON.parse(itemsFromLocalStorage || "");
+
+    if (itemsFromLocalStorage) {
+      setItems(jsonData);
+    }
+  }, []);
+
+  useEffect(() => {
+    setTimeout(() => {
+      localStorage.setItem("items", JSON.stringify(items));
+    }, 2000);
+  }, [items]);
 
   const getHighestId = () => {
     const itemsId = items.map((item) => item.todoId);
