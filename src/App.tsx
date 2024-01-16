@@ -3,7 +3,6 @@ import "./App.scss";
 import CreateToDo from "./components/CreateToDo";
 import Header from "./components/Header";
 import Todo from "./components/Todo";
-import { stringify } from "querystring";
 
 interface itemsTypes {
   todoId: number;
@@ -12,43 +11,26 @@ interface itemsTypes {
   isEmpty: boolean;
 }
 
-const initialItems = [
-  {
-    todoId: 1,
-    content: "Item 1",
-    isChecked: false,
-    isEmpty: false,
-  },
-  {
-    todoId: 2,
-    content: "Item 2",
-    isChecked: false,
-    isEmpty: false,
-  },
-  {
-    todoId: 3,
-    content: "Item 3",
-    isChecked: false,
-    isEmpty: false,
-  },
-];
+
 
 const App = () => {
-  const [items, setItems] = useState<itemsTypes[]>(initialItems || []);
+  const [items, setItems] = useState<itemsTypes[]>([]);
 
   useEffect(() => {
-    const itemsFromLocalStorage = localStorage.getItem("items");
-    const jsonData = JSON.parse(itemsFromLocalStorage || "");
+    const itemsLocalStorage = localStorage.getItem("items");
+    const jsonDataItems = itemsLocalStorage && JSON.parse(itemsLocalStorage);
 
-    if (itemsFromLocalStorage) {
-      setItems(jsonData);
+    if (itemsLocalStorage) {
+      setItems(jsonDataItems);
     }
   }, []);
 
   useEffect(() => {
-    setTimeout(() => {
+    const delayDebounce = setTimeout(() => {
       localStorage.setItem("items", JSON.stringify(items));
     }, 2000);
+
+    return ()=>clearTimeout(delayDebounce)
   }, [items]);
 
   const getHighestId = () => {
