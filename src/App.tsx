@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import "./App.scss";
 import CreateToDo from "./components/CreateToDo";
 import Header from "./components/Header";
@@ -12,26 +12,24 @@ interface itemsTypes {
 }
 
 const App = () => {
-  const [items, setItems] = useState<itemsTypes[]>([
-    {
-      todoId: 1,
-      content: "Item 1",
-      isChecked: false,
-      isEmpty: false,
-    },
-    {
-      todoId: 2,
-      content: "Item 2",
-      isChecked: false,
-      isEmpty: false,
-    },
-    {
-      todoId: 3,
-      content: "Item 3",
-      isChecked: false,
-      isEmpty: false,
-    },
-  ]);
+  const [items, setItems] = useState<itemsTypes[]>([]);
+
+  useEffect(() => {
+    const itemsLocalStorage = localStorage.getItem("items");
+    const jsonDataItems = itemsLocalStorage && JSON.parse(itemsLocalStorage);
+
+    if (itemsLocalStorage) {
+      setItems(jsonDataItems);
+    }
+  }, []);
+
+  useEffect(() => {
+    const delayDebounce = setTimeout(() => {
+      localStorage.setItem("items", JSON.stringify(items));
+    }, 2000);
+
+    return () => clearTimeout(delayDebounce);
+  }, [items]);
 
   const getHighestId = () => {
     const itemsId = items.map((item) => item.todoId);
