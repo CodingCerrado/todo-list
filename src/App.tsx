@@ -11,8 +11,6 @@ interface itemsTypes {
   isEmpty: boolean;
 }
 
-
-
 const App = () => {
   const [items, setItems] = useState<itemsTypes[]>([]);
 
@@ -30,7 +28,7 @@ const App = () => {
       localStorage.setItem("items", JSON.stringify(items));
     }, 2000);
 
-    return ()=>clearTimeout(delayDebounce)
+    return () => clearTimeout(delayDebounce);
   }, [items]);
 
   const getHighestId = () => {
